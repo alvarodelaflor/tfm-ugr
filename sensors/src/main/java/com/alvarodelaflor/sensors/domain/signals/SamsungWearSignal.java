@@ -25,7 +25,7 @@ public class SamsungWearSignal {
         private Double minPulse;
         private Double maxSpeed; // km/h
         private Double avgSpeed; // km/h
-        
+
     }
 
 }

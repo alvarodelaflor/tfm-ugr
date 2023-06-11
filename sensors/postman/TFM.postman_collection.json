@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "3f3c545b-0c5e-4684-9d62-c094972d1a49",
+		"name": "TFM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Sensors",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"item": [
+						{
+							"name": "Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/healthcheck/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"healthcheck",
+										"ping"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Token",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/healthcheck/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"healthcheck",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TuyaDevices",
+					"item": [
+						{
+							"name": "GET Devices",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tuya/devices",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tuya",
+										"devices"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Device Logs",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "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",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "631500981333-cddl64ncue36ofjc80rmqg46rdab6f0j.apps.googleusercontent.com",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "https://www.googleapis.com/auth/homegraph",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://oauth2.googleapis.com/token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "https://accounts.google.com/o/oauth2/auth",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "HomeGraphAutho",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tuya/devices/logs?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tuya",
+										"devices",
+										"logs"
+									],
+									"query": [
+										{
+											"key": "startTime",
+											"value": "11/06/2023 09:59"
+										},
+										{
+											"key": "endTime",
+											"value": "12/06/2023 00:00"
+										},
+										{
+											"key": "deviceId",
+											"value": "9b301cc2337d6386459k3b",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET Device logs by Device ID",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "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",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "631500981333-cddl64ncue36ofjc80rmqg46rdab6f0j.apps.googleusercontent.com",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "https://www.googleapis.com/auth/homegraph",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://oauth2.googleapis.com/token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "https://accounts.google.com/o/oauth2/auth",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "HomeGraphAutho",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tuya/devices/logs/9b301cc2337d6386459k3b?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tuya",
+										"devices",
+										"logs",
+										"9b301cc2337d6386459k3b"
+									],
+									"query": [
+										{
+											"key": "startTime",
+											"value": "11/06/2023 09:59"
+										},
+										{
+											"key": "endTime",
+											"value": "12/06/2023 00:00"
+										},
+										{
+											"key": "deviceId",
+											"value": "9b301cc2337d6386459k3b",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET PIR Signals",
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "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",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "631500981333-cddl64ncue36ofjc80rmqg46rdab6f0j.apps.googleusercontent.com",
+											"type": "string"
+										},
+										{
+											"key": "scope",
+											"value": "https://www.googleapis.com/auth/homegraph",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://oauth2.googleapis.com/token",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "https://accounts.google.com/o/oauth2/auth",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "HomeGraphAutho",
+											"type": "string"
+										},
+										{
+											"key": "useBrowser",
+											"value": true,
+											"type": "boolean"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/tuya/devices/pirSignal?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tuya",
+										"devices",
+										"pirSignal"
+									],
+									"query": [
+										{
+											"key": "startTime",
+											"value": "11/06/2023 09:59"
+										},
+										{
+											"key": "endTime",
+											"value": "12/06/2023 00:00"
+										},
+										{
+											"key": "deviceId",
+											"value": "9b301cc2337d6386459k3b",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/samsung/devices")
+@RequestMapping("/healthcheck")
 public class HealthCheckController {
 
     @GetMapping("/ping")
