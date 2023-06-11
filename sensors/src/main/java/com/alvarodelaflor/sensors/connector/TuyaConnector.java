@@ -1,9 +1,9 @@
 package com.alvarodelaflor.sensors.connector;
 
-import com.alvarodelaflor.sensors.domain.TuyaTokenContainer;
+import com.alvarodelaflor.sensors.domain.rest.TuyaToken;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.squareup.okhttp.*;
-import com.tuya.connector.open.api.token.TuyaToken;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -35,6 +35,9 @@ public class TuyaConnector {
     // Tuya could endpoint
     private static String endpoint = "https://openapi-weaz.tuyaeu.com";
 
+    public static String baseApiVersion = "/v1.0/iot-03";
+    public static String baseApiVersion3 = "/v1.3/iot-03";
+
     static {
         // Designated area domain name
         Constant.CONTAINER.put(Constant.ENDPOINT, endpoint);
@@ -52,15 +55,21 @@ public class TuyaConnector {
     /**
      * Used to obtain tokens, refresh tokens: no token request
      */
-    public static TuyaTokenContainer getToken() throws IOException {
+    public static TuyaToken getToken() {
         String getTokenPath = "/v1.0/token?grant_type=1";
-        return gson.fromJson(TuyaConnector.execute("", getTokenPath, "GET", "", new HashMap<>()).body().string(), TuyaTokenContainer.class);
+        TuyaToken tuyaToken = null;
+        try {
+            tuyaToken = gson.fromJson(TuyaConnector.execute("", getTokenPath, "GET", "", new HashMap<>()), TuyaToken.class);
+        } catch (JsonSyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        return tuyaToken;
     }
 
     /**
      * For business interface: carry Token request
      */
-    public static Response execute(String accessToken, String path, String method, String body, Map<String, String> customHeaders) {
+    public static String execute(String accessToken, String path, String method, String body, Map<String, String> customHeaders) {
         try {
             // Verify developer information
             if (MapUtils.isEmpty(Constant.CONTAINER)) {
@@ -87,8 +96,10 @@ public class TuyaConnector {
             Headers headers = getHeader(accessToken, request.build(), body, customHeaders);
             request.headers(headers);
             request.url(Constant.CONTAINER.get(Constant.ENDPOINT) + getPathAndSortParam(new URL(url)));
-            Response response = doRequest(request.build());
-            return response;
+            Request requestBuild = request.build();
+            requestToCurl(requestBuild);
+            Response response = doRequest(requestBuild);
+            return response.body().string();
         } catch (Exception e) {
             throw new TuyaCloudSDKException(e.getMessage());
         }
@@ -114,10 +125,7 @@ public class TuyaConnector {
         hb.add("t", t);
         hb.add("mode", "cors");
         hb.add("Content-Type", "application/json");
-        hb.add("lang", "zh");
-        hb.add(SING_HEADER_NAME, flattenHeaders.getOrDefault(SING_HEADER_NAME, ""));
         String nonceStr = flattenHeaders.getOrDefault(Constant.NONCE_HEADER_NAME, "");
-        hb.add(Constant.NONCE_HEADER_NAME, flattenHeaders.getOrDefault(Constant.NONCE_HEADER_NAME, ""));
         String stringToSign = stringToSign(request, body, flattenHeaders);
         if (StringUtils.isNotBlank(accessToken)) {
             hb.add("access_token", accessToken);
@@ -397,4 +405,39 @@ public class TuyaConnector {
         }
     }
 
+    public static void requestToCurl(Request request) {
+        String url = request.urlString();
+
+        // Obtener el método HTTP del request
+        String method = request.method();
+
+        // Obtener los headers del request
+        Headers headers = request.headers();
+        StringBuilder headersString = new StringBuilder();
+        for (int i = 0, size = headers.size(); i < size; i++) {
+            String name = headers.name(i);
+            String value = headers.value(i);
+            headersString.append(" -H '").append(name).append(": ").append(value).append("'");
+        }
+
+        // Obtener el body del request (si existe)
+        String body = "";
+        RequestBody requestBody = request.body();
+        if (requestBody != null) {
+            MediaType mediaType = requestBody.contentType();
+            if (mediaType != null && mediaType.type().equals("application") && mediaType.subtype().equals("json")) {
+                body = requestBody.toString();
+            }
+        }
+
+        // Construir el comando cURL
+        String curlCommand = "curl -X " + method + " '" + url + "'" + headersString.toString();
+
+        // Agregar el body al comando cURL si existe
+        if (!body.isEmpty()) {
+            curlCommand += " -d '" + body.replace("'", "\\'") + "'";
+        }
+
+        System.out.println(curlCommand);
+    }
 }
