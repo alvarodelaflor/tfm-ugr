@@ -25,6 +25,10 @@ public class DeviceLogs extends CommonContainer {
         String lastRowKey;
         @SerializedName("list")
         List<Event> eventList;
+
+        public void setEventList(List<Event> events) {
+            this.eventList = events;
+        }
     }
 
     public class Event {

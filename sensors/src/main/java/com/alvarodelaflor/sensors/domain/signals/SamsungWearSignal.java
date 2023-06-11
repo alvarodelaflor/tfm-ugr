@@ -1,7 +1,12 @@
 package com.alvarodelaflor.sensors.domain.signals;
 
+import lombok.Builder;
+import lombok.Getter;
+
 import java.util.List;
 
+@Builder
+@Getter
 public class SamsungWearSignal {
 
     private Long allSteps;
@@ -11,12 +16,16 @@ public class SamsungWearSignal {
     private Double avgPulse;
     private List<ExerciseSession> exerciseSession;
 
-    public class BloodPresure {
+    @Builder
+    @Getter
+    public static class BloodPresure {
         private Double systolicPressure; // mmHg
         private Double diastolicPressure; // mmHg
     }
 
-    public class ExerciseSession {
+    @Builder
+    @Getter
+    public static class ExerciseSession {
         private String activitiyName;
         private Integer caloriesBurned;
         private Double distanceDone; // meters

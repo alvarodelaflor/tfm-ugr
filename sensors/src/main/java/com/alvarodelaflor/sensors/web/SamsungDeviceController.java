@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/samsung/devices")
 public class SamsungDeviceController {
 
-    @GetMapping("/ping")
+    @GetMapping("/signal")
     public String ping() {
         return "pong";
     }
