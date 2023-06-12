@@ -3,11 +3,12 @@ package com.alvarodelaflor.sensors.domain.signals;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Builder
 @Getter
-public class SamsungWearSignal {
+public class SamsungWearSignal implements Serializable {
 
     private Long allSteps;
     private Double bloodGlucose; // measure metric: mm/dl
@@ -18,14 +19,14 @@ public class SamsungWearSignal {
 
     @Builder
     @Getter
-    public static class BloodPresure {
+    public static class BloodPresure implements Serializable {
         private Double systolicPressure; // mmHg
         private Double diastolicPressure; // mmHg
     }
 
     @Builder
     @Getter
-    public static class ExerciseSession {
+    public static class ExerciseSession implements Serializable{
         private String activitiyName;
         private Integer caloriesBurned;
         private Double distanceDone; // meters

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/sensors/sensors.iml" filepath="$PROJECT_DIR$/sensors/sensors.iml" />
-      <module fileurl="file://$PROJECT_DIR$/status/status.iml" filepath="$PROJECT_DIR$/status/status.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tfm-code.iml" filepath="$PROJECT_DIR$/.idea/tfm-code.iml" />
     </modules>
   </component>

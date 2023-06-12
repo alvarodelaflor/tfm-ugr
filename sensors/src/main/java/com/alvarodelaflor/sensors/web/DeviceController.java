@@ -30,7 +30,11 @@ public class DeviceController {
             @RequestParam(required = false, value = "debug") String debug,
             @RequestParam(required = false, value = "fakeSamsungValue") String fakeSamsungValue
     ) {
-        return this.deviceService.getAllDeviceSignals(startDateTime, endDateTime, FakeSignal.fromDebugParam(debug), FakeSamsungValue.fromValue(fakeSamsungValue));
+        return this.deviceService.getAndSaveAllDeviceSignals(startDateTime, endDateTime, FakeSignal.fromDebugParam(debug), FakeSamsungValue.fromValue(fakeSamsungValue));
     }
 
+    @GetMapping("/redis")
+    public Object getRedisValues() {
+        return this.deviceService.getAllSignalRecordsRedis();
+    }
 }

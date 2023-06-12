@@ -2,16 +2,17 @@ version: '3.9'
 
 services:
   redis:
-    image: redis:6.2-alpine
     container_name: redis
-    restart: always
+    image: redis:v1
+    build: ./redis
+    hostname: redis
     ports:
-      - '6379:6379'
-    command: redis-server --loglevel warning --requirepass tfmgranada
+      - "6379:6379"
 
   sensors:
     container_name: sensors
-    tty: false
+    links:
+      - redis
     build:
       context: ./sensors/
       dockerfile: Dockerfile
