@@ -17,5 +17,16 @@ services:
       context: ./sensors/
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
-      - 8081:8081
+      - "8080:8080"
+      - "8090:8090"
+
+  analyzer:
+    container_name: analyzer
+    links:
+      - redis
+    build:
+      context: ./analyzer/
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+      - "8091:8091"
