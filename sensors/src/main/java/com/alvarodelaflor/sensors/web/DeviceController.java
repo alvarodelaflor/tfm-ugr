@@ -1,9 +1,7 @@
 package com.alvarodelaflor.sensors.web;
 
-import com.alvarodelaflor.sensors.connector.TuyaConnector;
 import com.alvarodelaflor.sensors.domain.debug.FakeSamsungValue;
 import com.alvarodelaflor.sensors.domain.debug.FakeSignal;
-import com.alvarodelaflor.sensors.domain.rest.TuyaToken;
 import com.alvarodelaflor.sensors.domain.signals.Signal;
 import com.alvarodelaflor.sensors.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;

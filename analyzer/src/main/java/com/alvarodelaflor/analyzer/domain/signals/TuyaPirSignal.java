@@ -1,4 +1,4 @@
-package com.alvarodelaflor.sensors.domain.signals;
+package com.alvarodelaflor.analyzer.domain.signals;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

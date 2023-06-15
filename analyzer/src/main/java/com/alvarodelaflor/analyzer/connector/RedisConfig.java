@@ -1,4 +1,4 @@
-package com.alvarodelaflor.sensors.connector;
+package com.alvarodelaflor.analyzer.connector;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
