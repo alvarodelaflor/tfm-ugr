@@ -362,6 +362,56 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "GET Devices Signals REDIS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/devices/redis",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"devices",
+										"redis"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Analyzer",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"item": [
+						{
+							"name": "Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/healthcheck/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"healthcheck",
+										"ping"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
