@@ -58,6 +58,7 @@ public class SamsungWearSignal implements Serializable {
         private Map<SleepStage, List<SleepInterruption>> sleepPhases;
         private Double bloodOxygenSaturation;
         private Double avgPulse;
+        private Boolean fullDayRecord;
 
         public Long getTotalSleepDuration() {
             return this.sleepPhases.entrySet().stream()

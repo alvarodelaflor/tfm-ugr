@@ -331,7 +331,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/devices/signal?startTime=11/06/2023 15:40&endTime=12/06/2023 00:00&debug=samsung&fakeSamsungValue=allb&username=ugr",
+									"raw": "http://localhost:8080/devices/signal?startTime=11/06/2023 15:40&endTime=12/06/2023 00:00&debug=samsung&fakeSamsungValue=allb,sleep&username=ugr",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -356,7 +356,7 @@
 										},
 										{
 											"key": "fakeSamsungValue",
-											"value": "allb"
+											"value": "allb,sleep"
 										},
 										{
 											"key": "username",
@@ -403,7 +403,7 @@
 					"name": "Analyzer",
 					"item": [
 						{
-							"name": "GET Devices Signals REDIS Copy",
+							"name": "GET Analyzer signals",
 							"request": {
 								"method": "GET",
 								"header": [],

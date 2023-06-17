@@ -73,6 +73,7 @@ public class SamsungDeviceService {
                     .sleepPhases(sleepPhases)
                     .avgPulse(randomService.getRandomDouble(60.000, 100.000))
                     .bloodOxygenSaturation(randomService.getRandomDouble(93.000, 100.000))
+                    .fullDayRecord(true)
                     .build();
 
             builder.sleepSession(sleepSession);
@@ -128,6 +129,7 @@ public class SamsungDeviceService {
                     .sleepPhases(sleepPhases)
                     .avgPulse(randomService.getRandomDouble(100.000, 120.000))
                     .bloodOxygenSaturation(randomService.getRandomDouble(83.000, 93.000))
+                    .fullDayRecord(true)
                     .build();
 
             builder.sleepSession(sleepSession);
