@@ -9,10 +9,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="analyzer" />
         <module name="sensors" />
+        <module name="redis-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="analyzer" target="17" />
+      <module name="redis-gateway" target="17" />
       <module name="sensors" target="17" />
       <module name="sensors (1)" target="17" />
       <module name="status" target="17" />
@@ -21,6 +23,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="analyzer" options="-parameters" />
+      <module name="redis-gateway" options="-parameters" />
       <module name="sensors" options="-parameters" />
       <module name="sensors (1)" options="-parameters" />
       <module name="status" options="-parameters" />

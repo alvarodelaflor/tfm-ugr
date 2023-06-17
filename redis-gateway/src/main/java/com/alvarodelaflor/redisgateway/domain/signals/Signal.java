@@ -1,11 +1,8 @@
-package com.alvarodelaflor.analyzer.domain.signals;
+package com.alvarodelaflor.redisgateway.domain.signals;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
@@ -14,8 +11,6 @@ import java.util.List;
 @Getter
 @Builder
 @RedisHash("Signal")
-@NoArgsConstructor
-@AllArgsConstructor
 public class Signal implements Serializable {
     @Id
     private String id;

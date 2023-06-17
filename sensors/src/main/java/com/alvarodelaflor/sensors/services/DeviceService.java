@@ -3,7 +3,6 @@ package com.alvarodelaflor.sensors.services;
 import com.alvarodelaflor.sensors.domain.debug.FakeSamsungValue;
 import com.alvarodelaflor.sensors.domain.debug.FakeSignal;
 import com.alvarodelaflor.sensors.domain.signals.Signal;
-import com.alvarodelaflor.sensors.repository.SignalDao;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +23,20 @@ public class DeviceService {
     SamsungDeviceService samsungDeviceService;
 
     @Autowired
-    SignalDao signalDao;
+    RedisService redisService;
 
-    public Signal getAndSaveAllDeviceSignals(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSignal> debug, FakeSamsungValue fakeSamsungValue) {
+    public Signal getAndSaveAllDeviceSignals(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSignal> debug, FakeSamsungValue fakeSamsungValue, String username) {
         Signal signal = Signal.builder()
                 .id(startDateTime.toEpochSecond(OffsetDateTime.now().getOffset()) + "-" + endDateTime.toEpochSecond(OffsetDateTime.now().getOffset()))
                 .tuyaPirSignals(this.tuyaDeviceService.getPirSignals(startDateTime, endDateTime))
                 .samsungWearSignals(debug.contains(FakeSignal.SAMSUNG) ? this.samsungDeviceService.getSignalFake(startDateTime, endDateTime, fakeSamsungValue) : this.samsungDeviceService.getSignal(startDateTime, endDateTime))
                 .build();
-        signalDao.save(signal);
+        Boolean response = redisService.saveSignal(signal, username);
 
-        return signal;
+        return response ? signal : null;
     }
 
-    public List<Signal> getAllSignalRecordsRedis() {
-        return signalDao.findAll();
+    public List<Signal> getAllSignalRecordsRedis(String username) {
+        return redisService.findAllSignalsByUsername(username);
     }
 }

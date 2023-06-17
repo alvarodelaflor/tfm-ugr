@@ -12,7 +12,7 @@ services:
   sensors:
     container_name: sensors
     links:
-      - redis
+      - redis-gateway
     build:
       context: ./sensors/
       dockerfile: Dockerfile
@@ -30,3 +30,14 @@ services:
     ports:
       - "8081:8081"
       - "8091:8091"
+
+  redis-gateway:
+    container_name: redis-gateway
+    links:
+      - redis
+    build:
+      context: ./redis-gateway/
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+      - "8092:8092"

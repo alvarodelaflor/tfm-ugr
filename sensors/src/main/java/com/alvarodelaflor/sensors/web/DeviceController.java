@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 @RestController
@@ -26,13 +25,9 @@ public class DeviceController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "dd/MM/yyyy HH:mm" }) @RequestParam(value = "startTime") LocalDateTime startDateTime,
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, fallbackPatterns = { "dd/MM/yyyy HH:mm" }) @RequestParam(value = "endTime") LocalDateTime endDateTime,
             @RequestParam(required = false, value = "debug") String debug,
-            @RequestParam(required = false, value = "fakeSamsungValue") String fakeSamsungValue
+            @RequestParam(required = false, value = "fakeSamsungValue") String fakeSamsungValue,
+            @RequestParam("username") String usernname
     ) {
-        return this.deviceService.getAndSaveAllDeviceSignals(startDateTime, endDateTime, FakeSignal.fromDebugParam(debug), FakeSamsungValue.fromValue(fakeSamsungValue));
-    }
-
-    @GetMapping("/redis")
-    public Object getRedisValues() {
-        return this.deviceService.getAllSignalRecordsRedis();
+        return this.deviceService.getAndSaveAllDeviceSignals(startDateTime, endDateTime, FakeSignal.fromDebugParam(debug), FakeSamsungValue.fromValue(fakeSamsungValue), usernname);
     }
 }

@@ -1,13 +1,17 @@
 package com.alvarodelaflor.analyzer.domain.signals;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.List;
 
 @Builder
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SamsungWearSignal implements Serializable {
 
     private Long allSteps;
@@ -19,6 +23,8 @@ public class SamsungWearSignal implements Serializable {
 
     @Builder
     @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class BloodPresure implements Serializable {
         private Double systolicPressure; // mmHg
         private Double diastolicPressure; // mmHg
@@ -26,6 +32,8 @@ public class SamsungWearSignal implements Serializable {
 
     @Builder
     @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class ExerciseSession implements Serializable{
         private String activitiyName;
         private Integer caloriesBurned;

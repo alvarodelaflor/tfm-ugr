@@ -1,7 +1,6 @@
 package com.alvarodelaflor.analyzer.services;
 
 import com.alvarodelaflor.analyzer.domain.signals.Signal;
-import com.alvarodelaflor.analyzer.repository.SignalDao;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,9 @@ import java.util.List;
 public class DeviceService {
 
     @Autowired
-    SignalDao signalDao;
+    RedisService redisService;
 
-
-    public List<Signal> getAllSignalRecordsRedis() {
-        return signalDao.findAll();
+    public List<Signal> getAllSignalRecordsRedis(String username) {
+        return redisService.findAllSignalsByUsername(username);
     }
 }
