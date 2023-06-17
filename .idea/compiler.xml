@@ -7,22 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="analyzer" />
         <module name="sensors" />
         <module name="redis-gateway" />
+        <module name="analyzer" />
+        <module name="domain" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="analyzer" target="17" />
+      <module name="domain" target="17" />
       <module name="redis-gateway" target="17" />
       <module name="sensors" target="17" />
       <module name="sensors (1)" target="17" />
       <module name="status" target="17" />
+      <module name="tfm-code" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="analyzer" options="-parameters" />
+      <module name="domain" options="-parameters" />
       <module name="redis-gateway" options="-parameters" />
       <module name="sensors" options="-parameters" />
       <module name="sensors (1)" options="-parameters" />

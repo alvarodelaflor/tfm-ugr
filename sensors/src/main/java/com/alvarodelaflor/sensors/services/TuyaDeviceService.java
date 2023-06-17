@@ -1,6 +1,6 @@
 package com.alvarodelaflor.sensors.services;
 
-import com.alvarodelaflor.sensors.domain.signals.TuyaPirSignal;
+import com.alvarodelaflor.domain.model.signals.TuyaPirSignal;
 import com.alvarodelaflor.sensors.web.TuyaDeviceController;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

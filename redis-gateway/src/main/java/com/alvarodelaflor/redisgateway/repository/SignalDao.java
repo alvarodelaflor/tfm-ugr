@@ -1,6 +1,6 @@
 package com.alvarodelaflor.redisgateway.repository;
 
-import com.alvarodelaflor.redisgateway.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;

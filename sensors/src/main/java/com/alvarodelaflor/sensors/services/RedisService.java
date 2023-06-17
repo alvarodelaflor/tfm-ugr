@@ -1,6 +1,6 @@
 package com.alvarodelaflor.sensors.services;
 
-import com.alvarodelaflor.sensors.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

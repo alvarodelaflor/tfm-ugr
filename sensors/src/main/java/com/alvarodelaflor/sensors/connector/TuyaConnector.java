@@ -1,6 +1,6 @@
 package com.alvarodelaflor.sensors.connector;
 
-import com.alvarodelaflor.sensors.domain.rest.TuyaToken;
+import com.alvarodelaflor.domain.model.rest.TuyaToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.squareup.okhttp.*;

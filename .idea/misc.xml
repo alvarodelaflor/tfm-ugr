@@ -6,6 +6,8 @@
         <option value="$PROJECT_DIR$/sensors/pom.xml" />
         <option value="$PROJECT_DIR$/analyzer/pom.xml" />
         <option value="$PROJECT_DIR$/redis-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/domain/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>

@@ -1,11 +1,12 @@
 package com.alvarodelaflor.redisgateway.web;
 
-import com.alvarodelaflor.redisgateway.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.redisgateway.services.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/redis")

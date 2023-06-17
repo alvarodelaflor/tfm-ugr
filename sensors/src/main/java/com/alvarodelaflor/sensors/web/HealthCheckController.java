@@ -1,7 +1,7 @@
 package com.alvarodelaflor.sensors.web;
 
+import com.alvarodelaflor.domain.model.rest.TuyaToken;
 import com.alvarodelaflor.sensors.connector.TuyaConnector;
-import com.alvarodelaflor.sensors.domain.rest.TuyaToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

@@ -1,9 +1,9 @@
 package com.alvarodelaflor.analyzer.web;
 
-import com.alvarodelaflor.analyzer.domain.Workbook;
-import com.alvarodelaflor.analyzer.domain.signals.Signal;
 import com.alvarodelaflor.analyzer.services.AnalyzeService;
 import com.alvarodelaflor.analyzer.services.RedisService;
+import com.alvarodelaflor.domain.model.Workbook;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

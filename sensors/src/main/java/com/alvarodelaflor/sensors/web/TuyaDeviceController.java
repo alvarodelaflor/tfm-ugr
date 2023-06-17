@@ -1,9 +1,9 @@
 package com.alvarodelaflor.sensors.web;
 
+import com.alvarodelaflor.domain.model.rest.DeviceLogs;
+import com.alvarodelaflor.domain.model.rest.DeviceResults;
+import com.alvarodelaflor.domain.model.signals.TuyaPirSignal;
 import com.alvarodelaflor.sensors.connector.TuyaConnector;
-import com.alvarodelaflor.sensors.domain.rest.DeviceLogs;
-import com.alvarodelaflor.sensors.domain.rest.DeviceResults;
-import com.alvarodelaflor.sensors.domain.signals.TuyaPirSignal;
 import com.google.gson.Gson;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;

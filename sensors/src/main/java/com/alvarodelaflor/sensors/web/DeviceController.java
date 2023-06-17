@@ -1,8 +1,8 @@
 package com.alvarodelaflor.sensors.web;
 
-import com.alvarodelaflor.sensors.domain.debug.FakeSamsungValue;
-import com.alvarodelaflor.sensors.domain.debug.FakeSignal;
-import com.alvarodelaflor.sensors.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.debug.FakeSamsungValue;
+import com.alvarodelaflor.domain.model.debug.FakeSignal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.sensors.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;

@@ -1,9 +1,10 @@
 package com.alvarodelaflor.sensors.services;
 
-import com.alvarodelaflor.sensors.domain.debug.FakeSamsungValue;
-import com.alvarodelaflor.sensors.domain.signals.SamsungWearSignal;
+import com.alvarodelaflor.domain.model.debug.FakeSamsungValue;
+import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDateTime;
 

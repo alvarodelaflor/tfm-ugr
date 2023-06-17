@@ -1,6 +1,6 @@
 package com.alvarodelaflor.analyzer.services;
 
-import com.alvarodelaflor.analyzer.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;

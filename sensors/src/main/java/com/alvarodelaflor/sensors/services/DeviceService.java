@@ -1,8 +1,8 @@
 package com.alvarodelaflor.sensors.services;
 
-import com.alvarodelaflor.sensors.domain.debug.FakeSamsungValue;
-import com.alvarodelaflor.sensors.domain.debug.FakeSignal;
-import com.alvarodelaflor.sensors.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.debug.FakeSamsungValue;
+import com.alvarodelaflor.domain.model.debug.FakeSignal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +34,5 @@ public class DeviceService {
         Boolean response = redisService.saveSignal(signal, username);
 
         return response ? signal : null;
-    }
-
-    public List<Signal> getAllSignalRecordsRedis(String username) {
-        return redisService.findAllSignalsByUsername(username);
     }
 }

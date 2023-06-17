@@ -1,7 +1,7 @@
 package com.alvarodelaflor.analyzer.services;
 
-import com.alvarodelaflor.analyzer.domain.Workbook;
-import com.alvarodelaflor.analyzer.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
+import com.alvarodelaflor.domain.model.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

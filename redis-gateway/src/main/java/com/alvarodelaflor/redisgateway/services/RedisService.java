@@ -1,6 +1,6 @@
 package com.alvarodelaflor.redisgateway.services;
 
-import com.alvarodelaflor.redisgateway.domain.signals.Signal;
+import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.redisgateway.repository.SignalDao;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
