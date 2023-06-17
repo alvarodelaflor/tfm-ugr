@@ -5,8 +5,10 @@ import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class SamsungDeviceService {
@@ -14,13 +16,11 @@ public class SamsungDeviceService {
     @Autowired
     private RandomService randomService;
 
-    public SamsungWearSignal getSignalFake(LocalDateTime startDateTime, LocalDateTime endDateTime, FakeSamsungValue fakeSamsungValue) {
-        fakeSamsungValue = fakeSamsungValue == null ? FakeSamsungValue.DEFAULT : fakeSamsungValue;
-        switch (fakeSamsungValue) {
-            case ALL_BAD:
-                return buildFakeSignalNoNormal();
-            default:
-                return buildFakeSignalNormal();
+    public SamsungWearSignal getSignalFake(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSamsungValue> fakeSamsungValue) {
+        if (fakeSamsungValue.contains(FakeSamsungValue.ALL_BAD)) {
+            return buildFakeSignalNoNormal(startDateTime, endDateTime, fakeSamsungValue.contains(FakeSamsungValue.SLEEP));
+        } else {
+            return buildFakeSignalNormal(startDateTime , endDateTime, fakeSamsungValue.contains(FakeSamsungValue.SLEEP));
         }
     }
 
@@ -28,8 +28,8 @@ public class SamsungDeviceService {
         return null;
     }
 
-    private SamsungWearSignal buildFakeSignalNormal() {
-        return SamsungWearSignal.builder()
+    private SamsungWearSignal buildFakeSignalNormal(LocalDateTime startDateTime, LocalDateTime endDateTime, Boolean hasSleepSession) {
+        SamsungWearSignal.SamsungWearSignalBuilder builder =  SamsungWearSignal.builder()
                 .allSteps(randomService.getRandomLong(0l, 100l))
                 .bloodGlucose(randomService.getRandomDouble(70.0, 100.000))
                 .bloodOxygenSaturation(randomService.getRandomDouble(95.0, 100.000))
@@ -38,12 +38,50 @@ public class SamsungDeviceService {
                         .diastolicPressure(randomService.getRandomDouble(70.0, 80.000))
                         .build())
                 .avgPulse(randomService.getRandomDouble(60.0, 100.000))
-                .exerciseSession(null)
-                .build();
+                .exerciseSession(null);
+        if (hasSleepSession) {
+            Integer startAwake = randomService.getRandomInteger(1, 15);
+            Integer endAwake = randomService.getRandomInteger(startAwake, 20);
+            Integer endLight = randomService.getRandomInteger(endAwake, 30);
+            Integer endDeep = randomService.getRandomInteger(endLight, 30);
+
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderAwake = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 23, startAwake))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 23, endAwake))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderLight = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 23, endAwake))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 4, endLight))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderDeep = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 4, endLight))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 6, endDeep))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderRem = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 6, endDeep))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 7, 0))
+                    .build();
+
+            Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> sleepPhases = Map.of(
+                    SamsungWearSignal.SleepStage.AWAKE, Arrays.asList(sleepInterruptionBuilderAwake),
+                    SamsungWearSignal.SleepStage.LIGHT, Arrays.asList(sleepInterruptionBuilderLight),
+                    SamsungWearSignal.SleepStage.DEEP, Arrays.asList(sleepInterruptionBuilderDeep),
+                    SamsungWearSignal.SleepStage.REM, Arrays.asList(sleepInterruptionBuilderRem)
+            );
+
+            SamsungWearSignal.SleepSession sleepSession = SamsungWearSignal.SleepSession.builder()
+                    .sleepPhases(sleepPhases)
+                    .avgPulse(randomService.getRandomDouble(60.000, 100.000))
+                    .bloodOxygenSaturation(randomService.getRandomDouble(93.000, 100.000))
+                    .build();
+
+            builder.sleepSession(sleepSession);
+        }
+        return builder.build();
     }
 
-    private SamsungWearSignal buildFakeSignalNoNormal() {
-        return SamsungWearSignal.builder()
+    private SamsungWearSignal buildFakeSignalNoNormal(LocalDateTime startDateTime, LocalDateTime endDateTime, Boolean hasSleepSession) {
+        SamsungWearSignal.SamsungWearSignalBuilder builder = SamsungWearSignal.builder()
                 .allSteps(randomService.getRandomLong(5000l, 6000l))
                 .bloodGlucose(randomService.getRandomDouble(30.0, 50.000))
                 .bloodOxygenSaturation(randomService.getRandomDouble(70.0, 80.000))
@@ -53,6 +91,48 @@ public class SamsungDeviceService {
                         .build())
                 .avgPulse(randomService.getRandomDouble(105.0, 170.000))
                 .exerciseSession(null)
-                .build();
+                .sleepSession(null);
+
+        if (hasSleepSession) {
+            Integer startAwake = randomService.getRandomInteger(1, 15);
+            Integer endAwake = randomService.getRandomInteger(30, 59);
+            Integer endLight = randomService.getRandomInteger(0, 30);
+            Integer endDeep = randomService.getRandomInteger(endLight, 40);
+            Integer endRem = randomService.getRandomInteger(endDeep, 50);
+
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderAwake = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 23, startAwake))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 1, endAwake))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderLight = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 1, endAwake))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endLight))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderDeep = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endLight))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endDeep))
+                    .build();
+            SamsungWearSignal.SleepInterruption sleepInterruptionBuilderRem = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endDeep))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endRem))
+                    .build();
+
+            Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> sleepPhases = Map.of(
+                    SamsungWearSignal.SleepStage.AWAKE, Arrays.asList(sleepInterruptionBuilderAwake),
+                    SamsungWearSignal.SleepStage.LIGHT, Arrays.asList(sleepInterruptionBuilderLight),
+                    SamsungWearSignal.SleepStage.DEEP, Arrays.asList(sleepInterruptionBuilderDeep),
+                    SamsungWearSignal.SleepStage.REM, Arrays.asList(sleepInterruptionBuilderRem)
+            );
+
+            SamsungWearSignal.SleepSession sleepSession = SamsungWearSignal.SleepSession.builder()
+                    .sleepPhases(sleepPhases)
+                    .avgPulse(randomService.getRandomDouble(100.000, 120.000))
+                    .bloodOxygenSaturation(randomService.getRandomDouble(83.000, 93.000))
+                    .build();
+
+            builder.sleepSession(sleepSession);
+        }
+
+        return builder.build();
     }
 }

@@ -25,7 +25,7 @@ public class DeviceService {
     @Autowired
     RedisService redisService;
 
-    public Signal getAndSaveAllDeviceSignals(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSignal> debug, FakeSamsungValue fakeSamsungValue, String username) {
+    public Signal getAndSaveAllDeviceSignals(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSignal> debug, List<FakeSamsungValue> fakeSamsungValue, String username) {
         Signal signal = Signal.builder()
                 .id(startDateTime.toEpochSecond(OffsetDateTime.now().getOffset()) + "-" + endDateTime.toEpochSecond(OffsetDateTime.now().getOffset()))
                 .tuyaPirSignals(this.tuyaDeviceService.getPirSignals(startDateTime, endDateTime))

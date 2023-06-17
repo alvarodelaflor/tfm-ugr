@@ -6,7 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @Getter
@@ -20,6 +23,7 @@ public class SamsungWearSignal implements Serializable {
     private BloodPresure bloodPresure;
     private Double avgPulse;
     private List<ExerciseSession> exerciseSession;
+    private SleepSession sleepSession;
 
     @Builder
     @Getter
@@ -46,4 +50,34 @@ public class SamsungWearSignal implements Serializable {
 
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SleepSession implements Serializable{
+        private Map<SleepStage, List<SleepInterruption>> sleepPhases;
+        private Double bloodOxygenSaturation;
+        private Double avgPulse;
+
+        public Long getTotalSleepDuration() {
+            return this.sleepPhases.entrySet().stream()
+                    .filter(sleepStage -> !sleepStage.getKey().equals(SleepStage.AWAKE))
+                    .flatMap(x -> x.getValue().stream().map(y -> Duration.between(y.getStart(), y.getEnd()).toMinutes()))
+                    .reduce(Long::sum)
+                    .get();
+        }
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SleepInterruption implements Serializable{
+        private LocalDateTime start;
+        private LocalDateTime end;
+    }
+
+    public static enum SleepStage {
+        AWAKE, LIGHT, DEEP, REM
+    }
 }

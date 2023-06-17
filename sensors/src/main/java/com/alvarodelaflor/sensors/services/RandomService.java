@@ -18,4 +18,9 @@ public class RandomService {
         Double randomValue = lowerBound + (random.nextDouble() * (upperBound - lowerBound + 1));
         return Math.round(randomValue * 100.0) / 100.0;
     }
+
+    public Integer getRandomInteger(Integer lowerBound, Integer upperBound) {
+        Integer randomValue = lowerBound + random.nextInt(upperBound - lowerBound + 1);
+        return randomValue;
+    }
 }

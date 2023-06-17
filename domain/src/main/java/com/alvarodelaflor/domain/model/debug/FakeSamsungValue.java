@@ -1,7 +1,12 @@
 package com.alvarodelaflor.domain.model.debug;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public enum FakeSamsungValue {
     ALL_BAD("allb"),
+    SLEEP("sleep"),
     DEFAULT("default");
 
     private String value;
@@ -14,12 +19,23 @@ public enum FakeSamsungValue {
         return value;
     }
 
-    public static FakeSamsungValue fromValue(String value) {
-        for (FakeSamsungValue signal : values()) {
-            if (signal.getValue().equalsIgnoreCase(value)) {
-                return signal;
+    public static List<FakeSamsungValue> fromValue(String value) {
+        List<FakeSamsungValue> fakeSamsungValues = new ArrayList<>();
+        for (String temp : Arrays.asList(value.split(","))) {
+            FakeSamsungValue fakeSamsungValue = fromString(temp);
+            if (fakeSamsungValue != null) {
+                fakeSamsungValues.add(fakeSamsungValue);
             }
         }
-        return null;
+        return fakeSamsungValues;
+    }
+
+    private static FakeSamsungValue fromString(String input) {
+        for (FakeSamsungValue value : FakeSamsungValue.values()) {
+            if (value.getValue().equalsIgnoreCase(input)) {
+                return value;
+            }
+        }
+        return null; // Si no se encuentra ninguna coincidencia
     }
 }
