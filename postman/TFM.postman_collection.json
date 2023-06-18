@@ -127,7 +127,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/logs?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"raw": "http://localhost:8080/tuya/devices/logs?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -141,11 +141,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "11/06/2023 09:59"
+											"value": "18/06/2023 17:00"
 										},
 										{
 											"key": "endTime",
-											"value": "12/06/2023 00:00"
+											"value": "18/06/2023 18:00"
 										},
 										{
 											"key": "deviceId",
@@ -208,7 +208,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/logs/9b301cc2337d6386459k3b?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"raw": "http://localhost:8080/tuya/devices/logs/9b301cc2337d6386459k3b?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00&deviceId=9b301cc2337d6386459k3b",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -223,16 +223,15 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "11/06/2023 09:59"
+											"value": "18/06/2023 17:00"
 										},
 										{
 											"key": "endTime",
-											"value": "12/06/2023 00:00"
+											"value": "18/06/2023 18:00"
 										},
 										{
 											"key": "deviceId",
-											"value": "9b301cc2337d6386459k3b",
-											"disabled": true
+											"value": "9b301cc2337d6386459k3b"
 										}
 									]
 								}
@@ -290,7 +289,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/pirSignal?startTime=11/06/2023 09:59&endTime=12/06/2023 00:00",
+									"raw": "http://localhost:8080/tuya/devices/pirSignal?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -304,11 +303,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "11/06/2023 09:59"
+											"value": "18/06/2023 17:00"
 										},
 										{
 											"key": "endTime",
-											"value": "12/06/2023 00:00"
+											"value": "18/06/2023 18:00"
 										},
 										{
 											"key": "deviceId",
@@ -331,7 +330,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/devices/signal?startTime=11/06/2023 15:40&endTime=12/06/2023 00:00&debug=samsung&fakeSamsungValue=allb,sleep&username=ugr",
+									"raw": "http://localhost:8080/devices/signal?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00&debug=samsung&fakeSamsungValue=allb,sleep&username=ugr",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -344,11 +343,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "11/06/2023 15:40"
+											"value": "18/06/2023 17:00"
 										},
 										{
 											"key": "endTime",
-											"value": "12/06/2023 00:00"
+											"value": "18/06/2023 18:00"
 										},
 										{
 											"key": "debug",
