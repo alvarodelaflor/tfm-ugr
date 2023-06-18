@@ -11,6 +11,7 @@
         <module>domain</module>
         <module>sensors</module>
         <module>analyzer</module>
+        <module>execution</module>
         <module>redis-gateway</module>
     </modules>
 
@@ -54,6 +55,7 @@
                                     <pomInclude>domain/pom.xml</pomInclude>
                                     <pomInclude>sensors/pom.xml</pomInclude>
                                     <pomInclude>analyzer/pom.xml</pomInclude>
+                                    <pomInclude>execution/pom.xml</pomInclude>
                                     <pomInclude>redis-gateway/pom.xml</pomInclude>
                                 </pomIncludes>
                             </configuration>
