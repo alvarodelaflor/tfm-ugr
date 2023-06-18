@@ -1,8 +1,8 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
-import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
-import com.alvarodelaflor.domain.model.Alerts.sleep.RemAlert;
+import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
 

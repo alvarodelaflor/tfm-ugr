@@ -95,6 +95,17 @@ public class SamsungDeviceService {
                 .sleepSession(null);
 
         if (hasSleepSession) {
+
+            SamsungWearSignal.SleepInterruption nap1 = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 12, 30))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 12, 42))
+                    .build();
+
+            SamsungWearSignal.SleepInterruption nap2 = SamsungWearSignal.SleepInterruption.builder()
+                    .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 15, 12))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 15, 15))
+                    .build();
+
             Integer startAwake = randomService.getRandomInteger(1, 15);
             Integer endAwake = randomService.getRandomInteger(30, 59);
             Integer endLight = randomService.getRandomInteger(0, 30);
@@ -119,7 +130,7 @@ public class SamsungDeviceService {
                     .build();
 
             Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> sleepPhases = Map.of(
-                    SamsungWearSignal.SleepStage.AWAKE, Arrays.asList(sleepInterruptionBuilderAwake),
+                    SamsungWearSignal.SleepStage.AWAKE, Arrays.asList(sleepInterruptionBuilderAwake, nap1, nap2),
                     SamsungWearSignal.SleepStage.LIGHT, Arrays.asList(sleepInterruptionBuilderLight),
                     SamsungWearSignal.SleepStage.DEEP, Arrays.asList(sleepInterruptionBuilderDeep),
                     SamsungWearSignal.SleepStage.REM, Arrays.asList(sleepInterruptionBuilderRem)

@@ -1,6 +1,6 @@
-package com.alvarodelaflor.domain.model.Alerts.sleep;
+package com.alvarodelaflor.domain.model.alerts.sleep;
 
-import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

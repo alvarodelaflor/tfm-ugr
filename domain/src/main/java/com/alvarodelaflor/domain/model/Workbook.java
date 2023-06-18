@@ -1,6 +1,6 @@
 package com.alvarodelaflor.domain.model;
 
-import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.redis.core.RedisHash;
