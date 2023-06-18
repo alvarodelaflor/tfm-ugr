@@ -1,5 +1,6 @@
 package com.alvarodelaflor.analyzer.services;
 
+import com.alvarodelaflor.analyzer.services.filters.MovementAnalyzerService;
 import com.alvarodelaflor.analyzer.services.filters.SleepAnalyzerService;
 import com.alvarodelaflor.analyzer.services.filters.VitalSignsAnalyzerService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
@@ -21,6 +22,8 @@ public class AnalyzeService {
     SleepAnalyzerService sleepAnalyzerService;
     @Autowired
     VitalSignsAnalyzerService vitalSignsAnalyzerService;
+    @Autowired
+    MovementAnalyzerService movementAnalyzerService;
 
     public List<Workbook> analyzeSignals(List<Signal> signals, String username) {
         List<Workbook> workbookList = new ArrayList<>();
@@ -41,8 +44,10 @@ public class AnalyzeService {
         List<CommonAlert> commonAlerts = new ArrayList<>();
         commonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal));
         commonAlerts.addAll(vitalSignsAnalyzerService.isAllRulesValid(signal));
+        commonAlerts.addAll(movementAnalyzerService.isAllRulesValid(signal));
 
         Workbook workbook = Workbook.builder()
+                .id(signal.getId())
                 .commonAlerts(commonAlerts)
                 .build();
 

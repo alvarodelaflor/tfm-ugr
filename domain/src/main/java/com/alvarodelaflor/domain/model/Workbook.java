@@ -13,5 +13,6 @@ import java.util.List;
 @RedisHash("Workbook")
 public class Workbook implements Serializable {
 
+    private String id;
     private List<CommonAlert> commonAlerts;
 }

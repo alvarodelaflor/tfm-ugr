@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,5 +17,5 @@ public class CommonAlert {
     public String summary;
     public String name;
     @Builder.Default
-    public AlertType alertType = AlertType.INFORM;
+    public List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
 }
