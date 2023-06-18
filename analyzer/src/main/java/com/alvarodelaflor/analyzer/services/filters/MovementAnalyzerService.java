@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.services.filters;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.filters.movement.DisableSensorsMovementFilter;
 import com.alvarodelaflor.analyzer.filters.movement.RepeatedActionMovementFilter;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
@@ -14,7 +15,8 @@ import java.util.stream.Collectors;
 public class MovementAnalyzerService {
 
     private List<Filter> filters = Arrays.asList(
-            new RepeatedActionMovementFilter()
+            new RepeatedActionMovementFilter(),
+            new DisableSensorsMovementFilter()
     );
 
     public List<CommonAlert> isAllRulesValid(Signal signal) {
