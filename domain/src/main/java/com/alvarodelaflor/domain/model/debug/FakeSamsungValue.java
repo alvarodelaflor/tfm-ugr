@@ -7,6 +7,7 @@ import java.util.List;
 public enum FakeSamsungValue {
     ALL_BAD("allb"),
     SLEEP("sleep"),
+    LOW_BLOOD_PRESSURE("lbp"),
     DEFAULT("default");
 
     private String value;

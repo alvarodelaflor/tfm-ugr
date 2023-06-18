@@ -17,17 +17,17 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class HighBloodPressureAlert extends CommonAlert implements Serializable {
+public class LowBloodPressureAlert extends CommonAlert implements Serializable {
 
     SamsungWearSignal.BloodPresure bloodPressure;
     @Builder.Default
     Double weight = 2.9;
     @Builder.Default
-    String name = "HIGH_BLODD_PRESSURE_VITAL_SIGN_FILTER";
+    String name = "LOW_BLODD_PRESSURE_VITAL_SIGN_FILTER";
     @Builder.Default
-    String link = "https://www.sciencedirect.com/science/article/abs/pii/S1853002810700707";
+    String link = "https://www.nhlbi.nih.gov/es/salud/presion-arterial-baja";
     @Builder.Default
-    String summary = "Los pacientes con hipertensión arterial muestran más deterioro cognitivo que los controles normales en diferentes estudios";
+    String summary = "Hipotensión. La prensión sanguínea es más baja de lo normal, podría ser una bajada de tensión repentina grave";
     @Builder.Default
-    public List<AlertType> alertType = Arrays.asList(AlertType.INFORM, AlertType.ACTION);
+    public List<AlertType> alertType = Arrays.asList(AlertType.ACTION);
 }

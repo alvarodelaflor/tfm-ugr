@@ -18,7 +18,7 @@ public class SamsungDeviceService {
 
     public SamsungWearSignal getSignalFake(LocalDateTime startDateTime, LocalDateTime endDateTime, List<FakeSamsungValue> fakeSamsungValue) {
         if (fakeSamsungValue.contains(FakeSamsungValue.ALL_BAD)) {
-            return buildFakeSignalNoNormal(startDateTime, endDateTime, fakeSamsungValue.contains(FakeSamsungValue.SLEEP));
+            return buildFakeSignalNoNormal(startDateTime, endDateTime, fakeSamsungValue.contains(FakeSamsungValue.SLEEP), fakeSamsungValue.contains(FakeSamsungValue.LOW_BLOOD_PRESSURE));
         } else {
             return buildFakeSignalNormal(startDateTime , endDateTime, fakeSamsungValue.contains(FakeSamsungValue.SLEEP));
         }
@@ -81,14 +81,14 @@ public class SamsungDeviceService {
         return builder.build();
     }
 
-    private SamsungWearSignal buildFakeSignalNoNormal(LocalDateTime startDateTime, LocalDateTime endDateTime, Boolean hasSleepSession) {
+    private SamsungWearSignal buildFakeSignalNoNormal(LocalDateTime startDateTime, LocalDateTime endDateTime, Boolean hasSleepSession, Boolean lowBloodPressure) {
         SamsungWearSignal.SamsungWearSignalBuilder builder = SamsungWearSignal.builder()
                 .allSteps(randomService.getRandomLong(5000l, 6000l))
                 .bloodGlucose(randomService.getRandomDouble(30.0, 50.000))
                 .bloodOxygenSaturation(randomService.getRandomDouble(70.0, 80.000))
                 .bloodPresure(SamsungWearSignal.BloodPresure.builder()
-                        .systolicPressure(randomService.getRandomDouble(140.0, 160.000))
-                        .diastolicPressure(randomService.getRandomDouble(90.0, 110.000))
+                        .systolicPressure(lowBloodPressure ? randomService.getRandomDouble(70.0, 89.0) : randomService.getRandomDouble(140.0, 160.000))
+                        .diastolicPressure(lowBloodPressure ? randomService.getRandomDouble(40.0, 59.0) : randomService.getRandomDouble(90.0, 110.000))
                         .build())
                 .avgPulse(randomService.getRandomDouble(50., 59.990))
                 .exerciseSession(null)
