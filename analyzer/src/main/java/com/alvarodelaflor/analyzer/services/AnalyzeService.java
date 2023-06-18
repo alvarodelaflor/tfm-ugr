@@ -1,5 +1,6 @@
 package com.alvarodelaflor.analyzer.services;
 
+import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.domain.model.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -34,8 +34,10 @@ public class AnalyzeService {
     }
 
     private Optional<Workbook> checkSignal(Signal signal) {
+        List<SleepCommonAlert> sleepCommonAlerts = new ArrayList<>();
+        sleepCommonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal));
         Workbook workbook = Workbook.builder()
-                .sleepAlert(Workbook.SleepAlert.builder().reemSleep(sleepAnalyzerService.isAllRulesValid(signal)).build())
+                .sleepCommonAlerts(sleepCommonAlerts)
                 .build();
 
         return workbook == null ? Optional.empty() : Optional.of(workbook);

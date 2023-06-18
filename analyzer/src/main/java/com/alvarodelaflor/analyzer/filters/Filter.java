@@ -1,12 +1,11 @@
 package com.alvarodelaflor.analyzer.filters;
 
+import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
+
+import java.util.Optional;
 
 public interface Filter {
 
-    Boolean isRuleValid(Signal signal);
-
-    String getName();
-
-    Double getWeight();
+    Optional<SleepCommonAlert> isRuleValid(Signal signal);
 }

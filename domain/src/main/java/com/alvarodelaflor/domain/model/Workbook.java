@@ -1,23 +1,17 @@
 package com.alvarodelaflor.domain.model;
 
-import com.alvarodelaflor.domain.model.signals.Signal;
+import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
 @Getter
 @Builder
 @RedisHash("Workbook")
 public class Workbook implements Serializable {
 
-    private SleepAlert sleepAlert;
-
-    @Getter
-    @Builder
-    public static class SleepAlert implements Serializable {
-        Map<String, Double> reemSleep;
-    }
+    private List<SleepCommonAlert> sleepCommonAlerts;
 }

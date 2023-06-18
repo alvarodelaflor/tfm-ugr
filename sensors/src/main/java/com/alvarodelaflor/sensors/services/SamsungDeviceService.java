@@ -99,7 +99,7 @@ public class SamsungDeviceService {
             Integer endAwake = randomService.getRandomInteger(30, 59);
             Integer endLight = randomService.getRandomInteger(0, 30);
             Integer endDeep = randomService.getRandomInteger(endLight, 40);
-            Integer endRem = randomService.getRandomInteger(endDeep, 50);
+            Integer endRem = randomService.getRandomInteger(endDeep, 58);
 
             SamsungWearSignal.SleepInterruption sleepInterruptionBuilderAwake = SamsungWearSignal.SleepInterruption.builder()
                     .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth(), 23, startAwake))
@@ -115,7 +115,7 @@ public class SamsungDeviceService {
                     .build();
             SamsungWearSignal.SleepInterruption sleepInterruptionBuilderRem = SamsungWearSignal.SleepInterruption.builder()
                     .start(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endDeep))
-                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endRem))
+                    .end(LocalDateTime.of(startDateTime.getYear(), startDateTime.getMonth(), startDateTime.getDayOfMonth() + 1, 5, endRem + 1))
                     .build();
 
             Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> sleepPhases = Map.of(

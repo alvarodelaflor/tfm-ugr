@@ -1,29 +1,26 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.domain.model.Alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.Alerts.sleep.RemAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
 
 import java.time.Duration;
+import java.util.Optional;
 
 public class RemSleepFilter implements Filter {
 
-    static String name = "REM_SLEEP_FILTER";
-    static Double weight = 15.;
-
     @Override
-    public Boolean isRuleValid(Signal signal) {
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && calculateRemTime(signal) > 30 ? true : false;
+    public Optional<SleepCommonAlert> isRuleValid(Signal signal) {
+        Long remTime = calculateRemTime(signal);
+        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime > 30 ? Optional.empty() : Optional.of(getCommonAlert(remTime));
     }
 
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    @Override
-    public Double getWeight() {
-        return weight;
+    public SleepCommonAlert getCommonAlert(Long remTime) {
+        return RemAlert.builder()
+                .duration(remTime)
+                .build();
     }
 
     private Long calculateRemTime(Signal signal) {
