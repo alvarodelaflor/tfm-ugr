@@ -1,7 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 public class AwakeningsSleepFilter implements Filter {
 
     @Override
-    public Optional<SleepCommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal) {
         Long awakeningsTime = calculateAwakeTime(signal);
         Long numberOfAwakeningInterruptions = getNumberOfAwakeningInterruptions(signal);
         return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && (awakeningsTime > 20 || numberOfAwakeningInterruptions > 3) ? Optional.of(getCommonAlert(awakeningsTime, numberOfAwakeningInterruptions, signal)) : Optional.empty();
     }
 
-    public SleepCommonAlert getCommonAlert(Long awakeningsTime, Long numberOfAwakeningInterruptions, Signal signal) {
+    public CommonAlert getCommonAlert(Long awakeningsTime, Long numberOfAwakeningInterruptions, Signal signal) {
         return AwakeningsAlert.builder()
                 .numberOfAwakeningInterruptions(numberOfAwakeningInterruptions)
                 .duration(awakeningsTime)

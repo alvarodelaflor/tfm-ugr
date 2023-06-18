@@ -1,6 +1,6 @@
 package com.alvarodelaflor.domain.model.alerts.sleep;
 
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class WakeUpEarlyAlert extends SleepCommonAlert implements Serializable {
+public class WakeUpEarlyAlert extends CommonAlert implements Serializable {
 
     LocalDateTime lastSleepPhase;
     @Builder.Default

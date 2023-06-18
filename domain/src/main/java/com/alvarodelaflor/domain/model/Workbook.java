@@ -1,6 +1,6 @@
 package com.alvarodelaflor.domain.model;
 
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.redis.core.RedisHash;
@@ -13,5 +13,5 @@ import java.util.List;
 @RedisHash("Workbook")
 public class Workbook implements Serializable {
 
-    private List<SleepCommonAlert> sleepCommonAlerts;
+    private List<CommonAlert> commonAlerts;
 }

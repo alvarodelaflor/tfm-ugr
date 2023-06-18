@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SleepCommonAlert {
+public class CommonAlert {
 
     public String link;
     public String summary;

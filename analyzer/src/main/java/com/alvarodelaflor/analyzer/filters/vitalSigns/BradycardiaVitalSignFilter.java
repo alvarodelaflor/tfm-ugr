@@ -1,25 +1,25 @@
-package com.alvarodelaflor.analyzer.filters.sleep;
+package com.alvarodelaflor.analyzer.filters.vitalSigns;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
 
 import java.time.Duration;
 import java.util.Optional;
 
-public class RemSleepFilter implements Filter {
+public class BradycardiaVitalSignFilter implements Filter {
 
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal) {
-        Long remTime = calculateRemTime(signal);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime > 30 ? Optional.empty() : Optional.of(getCommonAlert(remTime));
+        Double avgPulse = signal.getSamsungWearSignals().getAvgPulse();
+        return avgPulse > 60.0 ? Optional.empty() : Optional.of(getCommonAlert(avgPulse));
     }
 
-    public CommonAlert getCommonAlert(Long remTime) {
-        return RemAlert.builder()
-                .duration(remTime)
+    public CommonAlert getCommonAlert(Double avgPulse) {
+        return BradycardiaAlert.builder()
+                .avgPulse(avgPulse)
                 .build();
     }
 

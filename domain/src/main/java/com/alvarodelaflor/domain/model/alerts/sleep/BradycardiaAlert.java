@@ -13,15 +13,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class RemAlert extends CommonAlert implements Serializable {
+public class BradycardiaAlert extends CommonAlert implements Serializable {
 
-    Long duration;
+    Double avgPulse;
     @Builder.Default
-    Double weight = 2.1;
+    Double weight = 1.6;
     @Builder.Default
-    String name = "REM_SLEEP_FILTER";;
+    String name = "BRADYCARDIA_VITAL_SIGN_FILTER";;
     @Builder.Default
-    String link = "https://neurologia.com/noticia/6398/menor-sueno-rem-se-traduciria-en-un-riesgo-mas-alto-de-demencia";
+    String link = "https://www.sciencedirect.com/science/article/pii/S0213485313000558";
     @Builder.Default
-    String summary = "Menor sueño REM se traduciría en un riesgo más alto de demencia";
+    String summary = "La bradicardia (< 60 ppm) es estadísticamente más frecuente en los pacientes con DFT (Demencia frontotemporal)";
 }

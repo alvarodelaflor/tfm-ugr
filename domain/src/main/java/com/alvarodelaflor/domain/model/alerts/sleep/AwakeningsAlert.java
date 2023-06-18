@@ -1,6 +1,6 @@
 package com.alvarodelaflor.domain.model.alerts.sleep;
 
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class AwakeningsAlert extends SleepCommonAlert implements Serializable {
+public class AwakeningsAlert extends CommonAlert implements Serializable {
 
     Long numberOfAwakeningInterruptions;
     List<SamsungWearSignal.SleepInterruption> interruptionPeriods;

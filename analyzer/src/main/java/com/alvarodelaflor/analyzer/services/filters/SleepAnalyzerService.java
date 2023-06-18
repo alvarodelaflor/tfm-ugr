@@ -1,11 +1,11 @@
-package com.alvarodelaflor.analyzer.services;
+package com.alvarodelaflor.analyzer.services.filters;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
 import com.alvarodelaflor.analyzer.filters.sleep.AwakeningsSleepFilter;
 import com.alvarodelaflor.analyzer.filters.sleep.DayTimeNapsSleepFilter;
 import com.alvarodelaflor.analyzer.filters.sleep.RemSleepFilter;
 import com.alvarodelaflor.analyzer.filters.sleep.WakingUpEarlySleepFilter;
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class SleepAnalyzerService {
             new WakingUpEarlySleepFilter()
     );
 
-    public List<SleepCommonAlert> isAllRulesValid(Signal signal) {
+    public List<CommonAlert> isAllRulesValid(Signal signal) {
         return filters.stream()
                 .map(filter -> filter.isRuleValid(signal))
                 .filter(filterResult -> filterResult.isPresent())

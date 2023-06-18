@@ -90,7 +90,7 @@ public class SamsungDeviceService {
                         .systolicPressure(randomService.getRandomDouble(140.0, 160.000))
                         .diastolicPressure(randomService.getRandomDouble(90.0, 110.000))
                         .build())
-                .avgPulse(randomService.getRandomDouble(105.0, 170.000))
+                .avgPulse(randomService.getRandomDouble(50., 59.990))
                 .exerciseSession(null)
                 .sleepSession(null);
 

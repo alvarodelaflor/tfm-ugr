@@ -1,6 +1,8 @@
 package com.alvarodelaflor.analyzer.services;
 
-import com.alvarodelaflor.domain.model.alerts.SleepCommonAlert;
+import com.alvarodelaflor.analyzer.services.filters.SleepAnalyzerService;
+import com.alvarodelaflor.analyzer.services.filters.VitalSignsAnalyzerService;
+import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.domain.model.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class AnalyzeService {
     RedisService redisService;
     @Autowired
     SleepAnalyzerService sleepAnalyzerService;
+    @Autowired
+    VitalSignsAnalyzerService vitalSignsAnalyzerService;
 
     public List<Workbook> analyzeSignals(List<Signal> signals, String username) {
         List<Workbook> workbookList = new ArrayList<>();
@@ -34,10 +38,12 @@ public class AnalyzeService {
     }
 
     private Optional<Workbook> checkSignal(Signal signal) {
-        List<SleepCommonAlert> sleepCommonAlerts = new ArrayList<>();
-        sleepCommonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal));
+        List<CommonAlert> commonAlerts = new ArrayList<>();
+        commonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal));
+        commonAlerts.addAll(vitalSignsAnalyzerService.isAllRulesValid(signal));
+
         Workbook workbook = Workbook.builder()
-                .sleepCommonAlerts(sleepCommonAlerts)
+                .commonAlerts(commonAlerts)
                 .build();
 
         return workbook == null ? Optional.empty() : Optional.of(workbook);
