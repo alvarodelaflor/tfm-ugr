@@ -21,12 +21,15 @@ public enum FakeSamsungValue {
 
     public static List<FakeSamsungValue> fromValue(String value) {
         List<FakeSamsungValue> fakeSamsungValues = new ArrayList<>();
-        for (String temp : Arrays.asList(value.split(","))) {
-            FakeSamsungValue fakeSamsungValue = fromString(temp);
-            if (fakeSamsungValue != null) {
-                fakeSamsungValues.add(fakeSamsungValue);
+        if (value!=null) {
+            for (String temp : Arrays.asList(value.split(","))) {
+                FakeSamsungValue fakeSamsungValue = fromString(temp);
+                if (fakeSamsungValue != null) {
+                    fakeSamsungValues.add(fakeSamsungValue);
+                }
             }
         }
+
         return fakeSamsungValues;
     }
 

@@ -1,4 +1,4 @@
-package com.alvarodelaflor.domain.model.alerts.sleep;
+package com.alvarodelaflor.domain.model.alerts.vitalSign;
 
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import lombok.AllArgsConstructor;
@@ -23,5 +23,5 @@ public class BradycardiaAlert extends CommonAlert implements Serializable {
     @Builder.Default
     String link = "https://www.sciencedirect.com/science/article/pii/S0213485313000558";
     @Builder.Default
-    String summary = "La bradicardia (< 60 ppm) es estadísticamente más frecuente en los pacientes con DFT (Demencia frontotemporal)";
+    String summary = "La bradicardia (< 60 ppm) es estadísticamente más frecuente en los pacientes con DFT (demencia frontotemporal)";
 }

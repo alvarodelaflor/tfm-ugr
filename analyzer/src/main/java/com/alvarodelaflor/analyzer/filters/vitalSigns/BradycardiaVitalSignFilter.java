@@ -2,7 +2,7 @@ package com.alvarodelaflor.analyzer.filters.vitalSigns;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.BradycardiaAlert;
+import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
 
@@ -30,6 +30,5 @@ public class BradycardiaVitalSignFilter implements Filter {
                         .map(sleepInterruption -> Duration.between(sleepInterruption.getStart(), sleepInterruption.getEnd()).toMinutes()))
                 .reduce(Long::sum)
                 .get();
-
     }
 }

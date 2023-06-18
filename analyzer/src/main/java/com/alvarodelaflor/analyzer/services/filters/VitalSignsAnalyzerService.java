@@ -2,6 +2,7 @@ package com.alvarodelaflor.analyzer.services.filters;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
 import com.alvarodelaflor.analyzer.filters.vitalSigns.BradycardiaVitalSignFilter;
+import com.alvarodelaflor.analyzer.filters.vitalSigns.HighBloodPressureVitalSignFilter;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ import java.util.stream.Collectors;
 public class VitalSignsAnalyzerService {
 
     private List<Filter> filters = Arrays.asList(
-            new BradycardiaVitalSignFilter()
+            new BradycardiaVitalSignFilter(),
+            new HighBloodPressureVitalSignFilter()
     );
 
     public List<CommonAlert> isAllRulesValid(Signal signal) {
