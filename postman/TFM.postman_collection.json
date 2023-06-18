@@ -358,6 +358,11 @@
 											"value": "allb,sleep"
 										},
 										{
+											"key": "fakeSamsungValue",
+											"value": "allb,sleep,lbp",
+											"disabled": true
+										},
+										{
 											"key": "username",
 											"value": "ugr"
 										}
