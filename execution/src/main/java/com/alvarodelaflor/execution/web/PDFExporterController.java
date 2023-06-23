@@ -1,5 +1,6 @@
 package com.alvarodelaflor.execution.web;
 
+import com.alvarodelaflor.domain.model.Workbook;
 import com.alvarodelaflor.execution.services.PDFGeneratorService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class PDFExporterController {
     @GetMapping("/pdf/{username}")
     public void generatePdf(
             @PathVariable(value = "username") String username,
+            Workbook workbook,
             HttpServletResponse response
     ) throws DocumentException, IOException {
         response.setContentType("application/pdf");
@@ -34,6 +36,6 @@ public class PDFExporterController {
         String headerValue = "attachment: filename=pdf_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        this.pdfGeneratorService.export(response);
+        this.pdfGeneratorService.export(response, workbook);
     }
 }
