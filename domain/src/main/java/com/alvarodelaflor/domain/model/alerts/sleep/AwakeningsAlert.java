@@ -34,8 +34,14 @@ public class AwakeningsAlert extends CommonAlert implements Serializable {
     String descriptionName = "Despertares continuos";
     @Builder.Default
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
-    @Builder.Default
+
     String customText = "";
+
+    public String getCustomText() {
+        return "El usuario ha estado despierto (mientras intentaba quedarse dormido), durante un total de " + duration + " minutos distribuidos a lo largo de un total de " + numberOfAwakeningInterruptions +
+                " interrupciones, por lo que la media de tiempo de interrupción por cada despertar ha sido de " + getAwakeningTimeAverage() + " minutos. A continuación se muestran los períodos de tiempo en los que el usuario ha estado despierto intentando volver a dormir: "
+                + getInterruptionPeriods() + ".";
+    }
 
     public Double getAwakeningTimeAverage() {
         return duration * 1. / numberOfAwakeningInterruptions;

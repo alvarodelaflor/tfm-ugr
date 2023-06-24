@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +77,12 @@ public class SamsungWearSignal implements Serializable {
     public static class SleepInterruption implements Serializable{
         private LocalDateTime start;
         private LocalDateTime end;
+
+        @Override
+        public String toString() {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            return "interrupción con fecha de inicio: " + start.format(formatter) + " y fecha de fin " + end.format(formatter);
+        }
     }
 
     public static enum SleepStage {

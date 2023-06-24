@@ -4,7 +4,9 @@ import com.alvarodelaflor.domain.model.Workbook;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
+import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
@@ -87,6 +89,25 @@ public class PDFGeneratorService {
                                         .build(),
                                 RepeatedMovementAlert
                                         .builder()
+                                        .repeatedMovementNumber(2)
+                                        .repeatedMovement(Map.of("Salón", Arrays.asList(LocalDateTime.now(), LocalDateTime.now())))
+                                        .build(),
+                                AwakeningsAlert
+                                        .builder()
+                                        .interruptionPeriods(Arrays.asList(
+                                                SamsungWearSignal.SleepInterruption
+                                                        .builder()
+                                                        .start(LocalDateTime.now())
+                                                        .end(LocalDateTime.now().plusMinutes(40l))
+                                                        .build(),
+                                                SamsungWearSignal.SleepInterruption
+                                                        .builder()
+                                                        .start(LocalDateTime.now().plusMinutes(60l))
+                                                        .end(LocalDateTime.now().plusMinutes(100l))
+                                                        .build()
+                                        ))
+                                        .duration(80l)
+                                        .numberOfAwakeningInterruptions(2l)
                                         .build(),
                                 BradycardiaAlert
                                         .builder()

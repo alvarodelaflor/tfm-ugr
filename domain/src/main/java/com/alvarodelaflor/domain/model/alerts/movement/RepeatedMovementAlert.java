@@ -10,9 +10,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -34,7 +34,26 @@ public class RepeatedMovementAlert extends CommonAlert implements Serializable {
     String descriptionName = "Movimientos repetidos";
     @Builder.Default
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
-    @Builder.Default
     String customText = "";
 
+    public String getCustomText() {
+        return "En este caso, el usuario ha realizado un número total de " + repeatedMovementNumber + ". A continuación se muestra un listado, en el que por cada uno de los sensores se detalla la hora a la que se considera que el movimiento es repetido: " + formatDates(repeatedMovement) + ".";
+    }
+
+    public static Map<String, List<String>> formatDates(Map<String, List<LocalDateTime>> repeatedMovement) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+        return repeatedMovement.entrySet().stream()
+                .collect(
+                        HashMap::new,
+                        (map, entry) -> map.put(entry.getKey(), formatDateTimeList(entry.getValue(), formatter)),
+                        HashMap::putAll
+                );
+    }
+
+    public static List<String> formatDateTimeList(List<LocalDateTime> dateTimeList, DateTimeFormatter formatter) {
+        return dateTimeList.stream()
+                .map(dateTime -> dateTime.format(formatter))
+                .toList();
+    }
 }
