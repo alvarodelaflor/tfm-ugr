@@ -1,5 +1,6 @@
 package com.alvarodelaflor.domain.model.alerts.sleep;
 
+import com.alvarodelaflor.domain.model.alerts.AlertType;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -20,9 +23,15 @@ public class WakeUpEarlyAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 0.9;
     @Builder.Default
-    String name = "WAKE_UP_EARLY_SLEEP_FILTER";;
+    CommonAlertName name = CommonAlertName.WAKE_UP_EARLY_SLEEP_FILTER;
     @Builder.Default
     String link = "https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272007000200011";
     @Builder.Default
     String summary = "Trastorno del ritmo circadiano. EL sujeto se despierta espontáneamente a primeras horas de la madrugada";
+    @Builder.Default
+    String descriptionName = "Despertar demasiado temprano";
+    @Builder.Default
+    List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
+    @Builder.Default
+    String customText = "";
 }

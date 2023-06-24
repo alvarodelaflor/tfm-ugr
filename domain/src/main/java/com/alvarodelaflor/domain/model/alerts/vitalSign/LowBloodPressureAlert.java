@@ -23,11 +23,15 @@ public class LowBloodPressureAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 2.9;
     @Builder.Default
-    String name = "LOW_BLODD_PRESSURE_VITAL_SIGN_FILTER";
+    CommonAlertName name = CommonAlertName.LOW_BLOOD_PRESSURE_VITAL_SIGN_FILTER;
     @Builder.Default
     String link = "https://www.nhlbi.nih.gov/es/salud/presion-arterial-baja";
     @Builder.Default
     String summary = "Hipotensión. La prensión sanguínea es más baja de lo normal, podría ser una bajada de tensión repentina grave";
     @Builder.Default
-    public List<AlertType> alertType = Arrays.asList(AlertType.ACTION);
+    List<AlertType> alertType = Arrays.asList(AlertType.ACTION);
+    @Builder.Default
+    String descriptionName = "Hipotensión";
+    @Builder.Default
+    String customText = "";
 }

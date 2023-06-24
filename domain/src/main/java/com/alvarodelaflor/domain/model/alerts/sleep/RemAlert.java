@@ -1,5 +1,6 @@
 package com.alvarodelaflor.domain.model.alerts.sleep;
 
+import com.alvarodelaflor.domain.model.alerts.AlertType;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 @SuperBuilder
 @NoArgsConstructor
@@ -19,9 +22,15 @@ public class RemAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 2.1;
     @Builder.Default
-    String name = "REM_SLEEP_FILTER";;
+    CommonAlertName name = CommonAlertName.REM_SLEEP_FILTER;
     @Builder.Default
     String link = "https://neurologia.com/noticia/6398/menor-sueno-rem-se-traduciria-en-un-riesgo-mas-alto-de-demencia";
     @Builder.Default
     String summary = "Menor sueño REM se traduciría en un riesgo más alto de demencia";
+    @Builder.Default
+    String descriptionName = "Poca cantidad de sueño REM";
+    @Builder.Default
+    List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
+    @Builder.Default
+    String customText = "";
 }

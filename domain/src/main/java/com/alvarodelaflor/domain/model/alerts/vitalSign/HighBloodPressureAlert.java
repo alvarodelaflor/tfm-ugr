@@ -23,11 +23,15 @@ public class HighBloodPressureAlert extends CommonAlert implements Serializable 
     @Builder.Default
     Double weight = 2.9;
     @Builder.Default
-    String name = "HIGH_BLODD_PRESSURE_VITAL_SIGN_FILTER";
+    CommonAlertName name = CommonAlertName.HIGH_BLOOD_PRESSURE_VITAL_SIGN_FILTER;
     @Builder.Default
     String link = "https://www.sciencedirect.com/science/article/abs/pii/S1853002810700707";
     @Builder.Default
     String summary = "Los pacientes con hipertensión arterial muestran más deterioro cognitivo que los controles normales en diferentes estudios";
     @Builder.Default
-    public List<AlertType> alertType = Arrays.asList(AlertType.INFORM, AlertType.ACTION);
+    List<AlertType> alertType = Arrays.asList(AlertType.INFORM, AlertType.ACTION);
+    @Builder.Default
+    String descriptionName = "Hipertensión";
+    @Builder.Default
+    String customText = "";
 }

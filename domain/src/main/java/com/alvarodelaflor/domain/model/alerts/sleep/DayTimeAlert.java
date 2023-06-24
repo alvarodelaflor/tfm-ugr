@@ -1,5 +1,6 @@
 package com.alvarodelaflor.domain.model.alerts.sleep;
 
+import com.alvarodelaflor.domain.model.alerts.AlertType;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +25,15 @@ public class DayTimeAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 1.6;
     @Builder.Default
-    String name = "DAYTIME_NAP_SLEEP_FILTER";;
+    CommonAlertName name = CommonAlertName.DAYTIME_NAP_SLEEP_FILTER;
     @Builder.Default
     String link = "https://scielo.isciii.es/scielo.php?pid=S1137-66272007000200014&script=sci_arttext&tlng=en";
     @Builder.Default
     String summary = "En la enfermedad de Alzheimer (EA), el sueño se caracteriza por un aumento de las siestas diurnas";
+    @Builder.Default
+    String descriptionName = "Siestas diurnas";
+    @Builder.Default
+    List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
+    @Builder.Default
+    String customText = "";
 }
