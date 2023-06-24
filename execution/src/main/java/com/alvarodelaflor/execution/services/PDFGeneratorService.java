@@ -8,10 +8,7 @@ import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.Image;
-import com.lowagie.text.pdf.PdfPCell;
-import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import io.netty.util.internal.StringUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -35,9 +32,6 @@ public class PDFGeneratorService {
         InputStream inputStream = classLoader.getResourceAsStream("static/logo.png");
         Image image = Image.getInstance(inputStream.readAllBytes());
         image.scalePercent(3.f);
-
-        // Establecer los márgenes del documento
-        document.setMargins(0, 0, 0, 0);
 
         // Establecer el ancho y la posición de la imagen
         float documentWidth = document.getPageSize().getWidth();
