@@ -6,6 +6,7 @@ import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAle
 import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.DayTimeAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.lowagie.text.*;
@@ -133,8 +134,13 @@ public class PDFGeneratorService {
                                                                         .start(LocalDateTime.now().plusMinutes(80))
                                                                         .end(LocalDateTime.now().plusMinutes(81))
                                                                         .build())
-                                                ))
-                                        .duration(80l)
+                                                )
+                                        )
+                                    .duration(80l)
+                                    .build(),
+                                RemAlert
+                                        .builder()
+                                        .duration(6l)
                                         .build(),
                                 BradycardiaAlert
                                         .builder()

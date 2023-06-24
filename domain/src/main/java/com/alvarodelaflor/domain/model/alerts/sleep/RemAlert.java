@@ -31,6 +31,10 @@ public class RemAlert extends CommonAlert implements Serializable {
     String descriptionName = "Poca cantidad de sueño REM";
     @Builder.Default
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
-    @Builder.Default
+
     String customText = "";
+
+    public String getCustomText() {
+        return "Pare el usuario del sistema, se han contabilizado tan solo " + duration + " minutos de sueño REM.";
+    }
 }
