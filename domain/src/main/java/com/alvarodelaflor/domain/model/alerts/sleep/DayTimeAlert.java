@@ -34,6 +34,10 @@ public class DayTimeAlert extends CommonAlert implements Serializable {
     String descriptionName = "Siestas diurnas";
     @Builder.Default
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
-    @Builder.Default
+
     String customText = "";
+
+    public String getCustomText() {
+        return "El usuario ha durmiendo, durante el día, un total de " + duration + " minutos. Por cada sueño que ha realizado durante el día, se muestran las etapas que a atravesado para cada uno de ellos: " + daytimeSleepStages + ".";
+    }
 }

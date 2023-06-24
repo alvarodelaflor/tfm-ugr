@@ -5,6 +5,7 @@ import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.DayTimeAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.lowagie.text.*;
@@ -108,6 +109,32 @@ public class PDFGeneratorService {
                                         ))
                                         .duration(80l)
                                         .numberOfAwakeningInterruptions(2l)
+                                        .build(),
+                                DayTimeAlert
+                                        .builder()
+                                        .daytimeSleepStages(
+                                                Map.of(
+                                                        SamsungWearSignal.SleepStage.LIGHT,
+                                                        Arrays.asList(
+                                                            SamsungWearSignal.SleepInterruption
+                                                                    .builder()
+                                                                    .start(LocalDateTime.now())
+                                                                    .end(LocalDateTime.now().plusMinutes(20))
+                                                                    .build(),
+                                                            SamsungWearSignal.SleepInterruption
+                                                                    .builder()
+                                                                    .start(LocalDateTime.now().plusMinutes(40))
+                                                                    .end(LocalDateTime.now().plusMinutes(60))
+                                                                    .build()
+                                                        ), SamsungWearSignal.SleepStage.REM,
+                                                        Arrays.asList(
+                                                                SamsungWearSignal.SleepInterruption
+                                                                        .builder()
+                                                                        .start(LocalDateTime.now().plusMinutes(80))
+                                                                        .end(LocalDateTime.now().plusMinutes(81))
+                                                                        .build())
+                                                ))
+                                        .duration(80l)
                                         .build(),
                                 BradycardiaAlert
                                         .builder()
