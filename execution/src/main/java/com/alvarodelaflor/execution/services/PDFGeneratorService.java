@@ -3,6 +3,7 @@ package com.alvarodelaflor.execution.services;
 import com.alvarodelaflor.domain.model.Workbook;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
+import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
@@ -71,15 +72,15 @@ public class PDFGeneratorService {
         Font sectionTitle2Font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
         sectionTitle2Font.setSize(14);
         sectionTitle2Font.setStyle(Font.ITALIC);
-        Paragraph sectionTitle2 = new Paragraph("\nSintomatología\n", sectionTitle1Font);
+        Paragraph sectionTitle2 = new Paragraph("Sintomatología\n", sectionTitle1Font);
         sectionTitle2.setAlignment(Paragraph.ALIGN_LEFT);
+        sectionTitle2.setSpacingBefore(8.f);
         document.add(sectionTitle2);
 
         Font fontParagraph2 = FontFactory.getFont(FontFactory.HELVETICA);
         fontParagraph2.setSize(12);
         Paragraph paragraph2 = new Paragraph("A continuación, se presentarán síntomas que podrían indicar la existencia de posibles problemas cognitivos. A cada síntoma detectado se asigna un peso que indica la probabilidad de sea cierto." , fontParagraph2);
         paragraph2.setAlignment(Paragraph.ALIGN_JUSTIFIED);
-        paragraph2.setSpacingAfter(10.f);
         document.add(paragraph2);
 
         workbook = Workbook.builder()
@@ -90,7 +91,11 @@ public class PDFGeneratorService {
                                         .dateTimeList(Map.of("Lo que sea", Arrays.asList(LocalDateTime.now(), LocalDateTime.now())))
                                         .numberOfTimes(2)
                                         .build(),
-                                BradycardiaAlert.builder()
+                                RepeatedMovementAlert
+                                        .builder()
+                                        .build(),
+                                BradycardiaAlert
+                                        .builder()
                                         .avgPulse(56.)
                                     .build()
                         ))
@@ -110,9 +115,9 @@ public class PDFGeneratorService {
         fontTitle.setSize(12);
         fontTitle.setStyle(Font.UNDERLINE);
         Paragraph title = new Paragraph(descriptionName, fontTitle);
-        title.setSpacingBefore(3.f);
         title.setAlignment(Paragraph.ALIGN_JUSTIFIED);
-        title.setSpacingAfter(10.f);
+        title.setSpacingBefore(8.f);
+        title.setSpacingAfter(5.f);
 
         Anchor anchor = new Anchor("link", FontFactory.getFont(FontFactory.COURIER));
         anchor.setReference(commonAlert.getLink());
