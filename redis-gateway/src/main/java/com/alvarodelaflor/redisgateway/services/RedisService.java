@@ -31,6 +31,10 @@ public class RedisService {
         return res;
     }
 
+    public void deleteSignal(String id, String username) {
+        signalDao.deleteSignal(id, username);
+    }
+
     public void saveWorkbook(Workbook workbook, String username) {
         this.workbookDao.save(workbook, username);
     }

@@ -46,7 +46,23 @@ public class RedisService {
         }
     }
 
-    public void deleteSignal(String id, String username) {
+    public Boolean deleteSignal(String id, String username) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
+        String url = UriComponentsBuilder.fromUriString(SIGNAL_URL + String.format("%s/%s", username, id))
+                .toUriString();
+
+        ResponseEntity<Void> response = REST_TEMPLATE.exchange(
+                url,
+                HttpMethod.DELETE,
+                new HttpEntity<>(null, headers),
+                Void.class);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

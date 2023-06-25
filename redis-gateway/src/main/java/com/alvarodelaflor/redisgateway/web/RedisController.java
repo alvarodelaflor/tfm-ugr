@@ -31,6 +31,14 @@ public class RedisController {
         return this.redisService.getAllSignalsByUser(username);
     }
 
+    @DeleteMapping("/signals/{username}/{id}")
+    public void deleteSignalByUsernameAndId(
+            @PathVariable(value = "id") String id,
+            @PathVariable(value = "username") String username
+    ) {
+        this.redisService.deleteSignal(id, username);
+    }
+
     @PostMapping("/workbooks/{username}")
     public void saveWorkbook(
             @RequestBody Workbook workbook,
