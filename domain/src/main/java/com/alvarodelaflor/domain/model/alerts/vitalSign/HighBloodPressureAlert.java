@@ -32,6 +32,10 @@ public class HighBloodPressureAlert extends CommonAlert implements Serializable 
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM, AlertType.ACTION);
     @Builder.Default
     String descriptionName = "Hipertensión";
-    @Builder.Default
+
     String customText = "";
+
+    public String getCustomText() {
+        return "El usuario estudiado tiene una una presión de " + bloodPressure.getSystolicPressure() + " mmHG para la sistólica y de " + bloodPressure.getDiastolicPressure() + " mmHg para la diástolica.";
+    }
 }
