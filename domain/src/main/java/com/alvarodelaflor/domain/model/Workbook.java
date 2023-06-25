@@ -11,8 +11,11 @@ import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.HighBloodPressureAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.LowBloodPressureAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
@@ -24,6 +27,8 @@ import java.util.Map;
 @Getter
 @Builder
 @RedisHash("Workbook")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Workbook implements Serializable {
 
     private String id;

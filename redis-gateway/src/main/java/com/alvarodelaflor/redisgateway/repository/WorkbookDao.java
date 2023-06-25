@@ -28,7 +28,7 @@ public class WorkbookDao {
         return (Workbook) template.opsForHash().get(getSignalHash(username), id);
     }
 
-    public String deleteSignal(String id, String username) {
+    public String deleteWorkbook(String id, String username) {
         template.opsForHash().delete(getSignalHash(username), id);
         return "";
     }

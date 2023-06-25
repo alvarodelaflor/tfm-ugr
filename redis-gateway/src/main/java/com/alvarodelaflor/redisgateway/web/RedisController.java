@@ -51,6 +51,14 @@ public class RedisController {
     public List<Workbook> getWorkbookByUsername(
             @PathVariable(value = "username") String username
     ) {
-        return this.redisService.getWorkbookByUser(username);
+        return this.redisService.getWorkbooksByUser(username);
+    }
+
+    @DeleteMapping("/workbooks/{username}/{id}")
+    public void deleteWorkbookByUsernameAndId(
+            @PathVariable(value = "id") String id,
+            @PathVariable(value = "username") String username
+    ) {
+        this.redisService.deleteWorkbook(id, username);
     }
 }

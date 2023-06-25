@@ -39,9 +39,13 @@ public class RedisService {
         this.workbookDao.save(workbook, username);
     }
 
-    public List<Workbook> getWorkbookByUser(String username) {
+    public List<Workbook> getWorkbooksByUser(String username) {
         List<Workbook> res = mapper.convertValue(workbookDao.findAll(username), new TypeReference<List<Workbook>>() { });
 
         return res;
+    }
+
+    public void deleteWorkbook(String id, String username) {
+        workbookDao.deleteWorkbook(id, username);
     }
 }
