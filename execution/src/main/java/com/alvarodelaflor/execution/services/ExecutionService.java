@@ -22,10 +22,15 @@ public class ExecutionService {
 
     public void executeWorkbook(HttpServletResponse response, String username) throws DocumentException, IOException {
         List<Workbook> workbookList = redisService.getWorkbookByUsername(username);
-        for (Workbook workbook: workbookList) {
-            pdfGeneratorService.export(response, workbook);
-            actionService.executeAction(workbook);
-            redisService.deleteWorkbookByUsernameAndId(username, workbook.getId());
+        if (workbookList != null && workbookList.size() > 0) {
+            for (Workbook workbook: workbookList) {
+                pdfGeneratorService.export(response, workbook);
+                actionService.executeAction(workbook);
+                redisService.deleteWorkbookByUsernameAndId(username, workbook.getId());
+            }
+        } else {
+            pdfGeneratorService.export(response, Workbook.builder().build());
         }
+
     }
 }

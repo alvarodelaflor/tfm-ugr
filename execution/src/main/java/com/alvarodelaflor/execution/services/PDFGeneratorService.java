@@ -77,7 +77,7 @@ public class PDFGeneratorService {
         paragraph2.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         document.add(paragraph2);
 
-        workbook = Workbook.aBuilder();
+        //workbook = Workbook.aBuilder();
 
         if (workbook != null && workbook.getCommonAlerts()!= null && workbook.getCommonAlerts().size() > 0) {
             Double weight = 0.;

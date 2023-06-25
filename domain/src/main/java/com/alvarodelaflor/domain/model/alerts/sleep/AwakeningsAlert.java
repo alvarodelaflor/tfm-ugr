@@ -44,7 +44,8 @@ public class AwakeningsAlert extends CommonAlert implements Serializable {
     }
 
     public Double getAwakeningTimeAverage() {
-        return duration * 1. / numberOfAwakeningInterruptions;
+        double avg = duration * 1. / numberOfAwakeningInterruptions;
+        return Math.round(avg * 100.0) / 100.0;
     }
 
 }
