@@ -84,96 +84,27 @@ public class PDFGeneratorService {
         paragraph2.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         document.add(paragraph2);
 
-        workbook = Workbook.builder()
-                .commonAlerts(
-                        Arrays.asList(
-                                DisableSensorsMovementAlert
-                                        .builder()
-                                        .dateTimeList(Map.of("Lo que sea", Arrays.asList(LocalDateTime.now(), LocalDateTime.now())))
-                                        .numberOfTimes(2)
-                                        .build(),
-                                RepeatedMovementAlert
-                                        .builder()
-                                        .repeatedMovementNumber(2)
-                                        .repeatedMovement(Map.of("Salón", Arrays.asList(LocalDateTime.now(), LocalDateTime.now())))
-                                        .build(),
-                                AwakeningsAlert
-                                        .builder()
-                                        .interruptionPeriods(Arrays.asList(
-                                                SamsungWearSignal.SleepInterruption
-                                                        .builder()
-                                                        .start(LocalDateTime.now())
-                                                        .end(LocalDateTime.now().plusMinutes(40l))
-                                                        .build(),
-                                                SamsungWearSignal.SleepInterruption
-                                                        .builder()
-                                                        .start(LocalDateTime.now().plusMinutes(60l))
-                                                        .end(LocalDateTime.now().plusMinutes(100l))
-                                                        .build()
-                                        ))
-                                        .duration(80l)
-                                        .numberOfAwakeningInterruptions(2l)
-                                        .build(),
-                                DayTimeAlert
-                                        .builder()
-                                        .daytimeSleepStages(
-                                                Map.of(
-                                                        SamsungWearSignal.SleepStage.LIGHT,
-                                                        Arrays.asList(
-                                                            SamsungWearSignal.SleepInterruption
-                                                                    .builder()
-                                                                    .start(LocalDateTime.now())
-                                                                    .end(LocalDateTime.now().plusMinutes(20))
-                                                                    .build(),
-                                                            SamsungWearSignal.SleepInterruption
-                                                                    .builder()
-                                                                    .start(LocalDateTime.now().plusMinutes(40))
-                                                                    .end(LocalDateTime.now().plusMinutes(60))
-                                                                    .build()
-                                                        ), SamsungWearSignal.SleepStage.REM,
-                                                        Arrays.asList(
-                                                                SamsungWearSignal.SleepInterruption
-                                                                        .builder()
-                                                                        .start(LocalDateTime.now().plusMinutes(80))
-                                                                        .end(LocalDateTime.now().plusMinutes(81))
-                                                                        .build())
-                                                )
-                                        )
-                                    .duration(80l)
-                                    .build(),
-                                RemAlert
-                                        .builder()
-                                        .duration(6l)
-                                        .build(),
-                                WakeUpEarlyAlert
-                                        .builder()
-                                        .lastSleepPhase(LocalDateTime.now())
-                                        .build(),
-                                BradycardiaAlert
-                                        .builder()
-                                        .avgPulse(56.)
-                                    .build(),
-                                HighBloodPressureAlert
-                                        .builder()
-                                        .bloodPressure(SamsungWearSignal.BloodPresure
-                                                .builder()
-                                                .systolicPressure(150d)
-                                                .diastolicPressure(90d)
-                                                .build())
-                                        .build(),
-                                LowBloodPressureAlert
-                                        .builder()
-                                        .bloodPressure(SamsungWearSignal.BloodPresure
-                                                .builder()
-                                                .systolicPressure(90d)
-                                                .diastolicPressure(70d)
-                                                .build())
-                                        .build()
-                        ))
-                .build();
+        //workbook = Workbook.aBuilder();
 
-        for (CommonAlert commonAlert: workbook.getCommonAlerts()) {
-            printAlert(commonAlert, document);
+        if (workbook != null && workbook.getCommonAlerts()!= null && workbook.getCommonAlerts().size() > 0) {
+            for (CommonAlert commonAlert: workbook.getCommonAlerts()) {
+                printAlert(commonAlert, document);
+            }
+        } else {
+            Font fontTitleEmpty = FontFactory.getFont(FontFactory.HELVETICA);
+            fontTitleEmpty.setSize(12);
+            fontTitleEmpty.setStyle(Font.UNDERLINE);
+            Paragraph sectionTitleEmpty = new Paragraph("Sin registros", fontTitleEmpty);
+            sectionTitleEmpty.setSpacingBefore(10.f);
+            sectionTitleEmpty.setAlignment(Paragraph.ALIGN_LEFT);
+            document.add(sectionTitleEmpty);
+
+            Font fontParagraphEmpty = FontFactory.getFont(FontFactory.HELVETICA);
+            fontParagraphEmpty.setSize(12);
+            Paragraph paragraphEmpty = new Paragraph("No se ha encontrado ningun situación que pueda ser relacionada con deterioro cognitivo." , fontParagraphEmpty);
+            paragraphEmpty.setSpacingBefore(8.f);
+            paragraphEmpty.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+            document.add(paragraphEmpty);
         }
 
         document.close();
