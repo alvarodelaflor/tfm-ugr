@@ -1,5 +1,7 @@
 package com.alvarodelaflor.domain.model.alerts;
 
-public enum AlertType {
+import java.io.Serializable;
+
+public enum AlertType implements Serializable {
     INFORM, ACTION
 }

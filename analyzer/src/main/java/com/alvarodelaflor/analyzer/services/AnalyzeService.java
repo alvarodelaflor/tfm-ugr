@@ -30,10 +30,11 @@ public class AnalyzeService {
         signals.stream().forEach(signal -> {
             Optional<Workbook> workbook = checkSignal(signal);
             if (workbook.isPresent()) {
+                redisService.saveWorkbook(workbook.get(), username);
                 workbookList.add(workbook.get());
                 redisService.deleteSignal(signal.getId(), username);
             } else {
-                // Lanzar log y mensaje de error
+                // TODO Error msg
             }
         });
 

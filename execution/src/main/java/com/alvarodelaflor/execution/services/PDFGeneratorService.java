@@ -2,19 +2,15 @@ package com.alvarodelaflor.execution.services;
 
 import com.alvarodelaflor.domain.model.Workbook;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
-import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
-import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.DayTimeAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
-import com.alvarodelaflor.domain.model.alerts.sleep.WakeUpEarlyAlert;
-import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
-import com.alvarodelaflor.domain.model.alerts.vitalSign.HighBloodPressureAlert;
-import com.alvarodelaflor.domain.model.alerts.vitalSign.LowBloodPressureAlert;
-import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
-import com.lowagie.text.*;
+import com.lowagie.text.Anchor;
+import com.lowagie.text.Chunk;
 import com.lowagie.text.Font;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.FontFactory;
 import com.lowagie.text.Image;
+import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
@@ -23,9 +19,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Map;
 
 @Service
 public class PDFGeneratorService {

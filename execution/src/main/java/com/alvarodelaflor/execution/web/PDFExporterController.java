@@ -16,13 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/execution")
+@RequestMapping("/pdf")
 public class PDFExporterController {
 
     @Autowired
     private PDFGeneratorService pdfGeneratorService;
 
-    @GetMapping("/pdf/{username}")
+    @GetMapping("/exporter/{username}")
     public void generatePdf(
             @PathVariable(value = "username") String username,
             Workbook workbook,
