@@ -432,6 +432,88 @@
 			]
 		},
 		{
+			"name": "Execution",
+			"item": [
+				{
+					"name": "Healthcheck",
+					"item": [
+						{
+							"name": "Ping",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/healthcheck/ping",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"healthcheck",
+										"ping"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PDFExporter",
+					"item": [
+						{
+							"name": "GET PDF by username",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/execution/pdf/ugr",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"execution",
+										"pdf",
+										"ugr"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Execute",
+					"item": [
+						{
+							"name": "GET Execute action",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8083/execute/workbook/ugr",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8083",
+									"path": [
+										"execute",
+										"workbook",
+										"ugr"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Redis Gateway",
 			"item": [
 				{
@@ -477,6 +559,32 @@
 									"path": [
 										"redis",
 										"signals",
+										"ugr"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Workbook",
+					"item": [
+						{
+							"name": "GET Workbooks by username",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/redis/workbooks/ugr",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"redis",
+										"workbooks",
 										"ugr"
 									]
 								}
