@@ -10,6 +10,7 @@ import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.WakeUpEarlyAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.HighBloodPressureAlert;
+import com.alvarodelaflor.domain.model.alerts.vitalSign.LowBloodPressureAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
@@ -158,6 +159,14 @@ public class PDFGeneratorService {
                                                 .builder()
                                                 .systolicPressure(150d)
                                                 .diastolicPressure(90d)
+                                                .build())
+                                        .build(),
+                                LowBloodPressureAlert
+                                        .builder()
+                                        .bloodPressure(SamsungWearSignal.BloodPresure
+                                                .builder()
+                                                .systolicPressure(90d)
+                                                .diastolicPressure(70d)
                                                 .build())
                                         .build()
                         ))
