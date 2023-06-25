@@ -10,6 +10,8 @@ import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +34,11 @@ public class WakeUpEarlyAlert extends CommonAlert implements Serializable {
     String descriptionName = "Despertar demasiado temprano";
     @Builder.Default
     List<AlertType> alertType = Arrays.asList(AlertType.INFORM);
-    @Builder.Default
+
     String customText = "";
+
+    public String getCustomText() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return "Particularmente este usuario se ha despertado el " + lastSleepPhase.format(formatter).replace(" ", " a las ") + ".";
+    }
 }

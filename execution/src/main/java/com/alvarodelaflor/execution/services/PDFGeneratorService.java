@@ -7,6 +7,7 @@ import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.AwakeningsAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.DayTimeAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
+import com.alvarodelaflor.domain.model.alerts.sleep.WakeUpEarlyAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.BradycardiaAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.lowagie.text.*;
@@ -141,6 +142,10 @@ public class PDFGeneratorService {
                                 RemAlert
                                         .builder()
                                         .duration(6l)
+                                        .build(),
+                                WakeUpEarlyAlert
+                                        .builder()
+                                        .lastSleepPhase(LocalDateTime.now())
                                         .build(),
                                 BradycardiaAlert
                                         .builder()
