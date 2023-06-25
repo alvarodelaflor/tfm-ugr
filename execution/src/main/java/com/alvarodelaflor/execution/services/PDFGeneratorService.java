@@ -84,12 +84,31 @@ public class PDFGeneratorService {
         paragraph2.setAlignment(Paragraph.ALIGN_JUSTIFIED);
         document.add(paragraph2);
 
-        //workbook = Workbook.aBuilder();
+        workbook = Workbook.aBuilder();
 
         if (workbook != null && workbook.getCommonAlerts()!= null && workbook.getCommonAlerts().size() > 0) {
+            Double weight = 0.;
+
             for (CommonAlert commonAlert: workbook.getCommonAlerts()) {
                 printAlert(commonAlert, document);
+                weight += commonAlert.getWeight();
             }
+
+            weight = Math.round(weight * 100.0) / 100.0;
+
+            Font conclusionsFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+            conclusionsFont.setSize(14);
+            conclusionsFont.setStyle(Font.ITALIC);
+            Paragraph conclusions = new Paragraph("\nConclusiones\n", conclusionsFont);
+            conclusions.setAlignment(Paragraph.ALIGN_LEFT);
+            document.add(conclusions);
+
+            Font conclusionsTextFont = FontFactory.getFont(FontFactory.HELVETICA);
+            conclusionsTextFont.setSize(12);
+            Paragraph conclusionsText = new Paragraph(String.format("Tras el análisis realizado el peso total de los diferentes síntomas detectados es de %s puntos. Tener un resultado superior a 7 puntos representa claros signos de deterioro cognitivo.", weight) , conclusionsTextFont);
+            conclusionsText.setAlignment(Paragraph.ALIGN_JUSTIFIED);
+            document.add(conclusionsText);
+
         } else {
             Font fontTitleEmpty = FontFactory.getFont(FontFactory.HELVETICA);
             fontTitleEmpty.setSize(12);
