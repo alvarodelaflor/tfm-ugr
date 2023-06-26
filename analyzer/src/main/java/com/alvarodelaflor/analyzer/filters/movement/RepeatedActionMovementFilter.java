@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.movement;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
@@ -19,10 +20,10 @@ import java.util.stream.Collectors;
 public class RepeatedActionMovementFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
-        Map<String, List<LocalDateTime>> repeatedMovement = getRepeatedMovement(signal, 3);
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
+        Map<String, List<LocalDateTime>> repeatedMovement = getRepeatedMovement(signal, valueService.getMaxMinutes());
 
-        return repeatedMovement.size() < 1 ? Optional.empty() : Optional.of(getCommonAlert(repeatedMovement));
+        return repeatedMovement.size() < valueService.getRepeatNumber() ? Optional.empty() : Optional.of(getCommonAlert(repeatedMovement));
     }
 
     public CommonAlert getCommonAlert(Map<String, List<LocalDateTime>> repeatedMovement) {

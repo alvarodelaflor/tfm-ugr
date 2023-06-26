@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.vitalSigns;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.HighBloodPressureAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
@@ -11,9 +12,9 @@ import java.util.Optional;
 public class HighBloodPressureVitalSignFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         SamsungWearSignal.BloodPresure bloodPressure = signal.getSamsungWearSignals().getBloodPresure();
-        return bloodPressure.getDiastolicPressure() < 80 & bloodPressure.getSystolicPressure() < 120 ? Optional.empty() : Optional.of(getCommonAlert(bloodPressure));
+        return bloodPressure.getDiastolicPressure() < valueService.getHDiastolicPressure() & bloodPressure.getSystolicPressure() < valueService.getHDiastolicPressure() ? Optional.empty() : Optional.of(getCommonAlert(bloodPressure));
     }
 
     public CommonAlert getCommonAlert(SamsungWearSignal.BloodPresure bloodPressure) {

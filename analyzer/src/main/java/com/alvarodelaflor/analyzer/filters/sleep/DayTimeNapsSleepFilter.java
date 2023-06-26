@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.DayTimeAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
@@ -15,10 +16,10 @@ import java.util.stream.Collectors;
 public class DayTimeNapsSleepFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> dayTimeNap = calculateDaytimeSleepSession(signal);
         Long duration = calculateTotalDuration(dayTimeNap);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && duration < 15 ? Optional.empty() : Optional.of(getCommonAlert(dayTimeNap, duration));
+        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && duration < valueService.getDuration() ? Optional.empty() : Optional.of(getCommonAlert(dayTimeNap, duration));
     }
 
     public CommonAlert getCommonAlert(Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> dayTimeNap, Long duration) {

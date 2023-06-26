@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.movement;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
@@ -15,9 +16,9 @@ import java.util.stream.Collectors;
 public class DisableSensorsMovementFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Map<String, List<LocalDateTime>> disableSensorsOccurrences = getDisableSensorsOccurrences(signal);
-        return disableSensorsOccurrences.size() < 1 ? Optional.empty() : Optional.of(getCommonAlert(disableSensorsOccurrences));
+        return disableSensorsOccurrences.size() < valueService.getDisableSensorsOccurrences() ? Optional.empty() : Optional.of(getCommonAlert(disableSensorsOccurrences));
     }
 
     public CommonAlert getCommonAlert(Map<String, List<LocalDateTime>> disableSensorsOccurrences) {

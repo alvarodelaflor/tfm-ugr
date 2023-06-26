@@ -1,6 +1,7 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.WakeUpEarlyAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
@@ -12,9 +13,9 @@ import java.util.Optional;
 public class WakingUpEarlySleepFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Optional<LocalDateTime> lastSleepPhase = getLastHourRecord(signal);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && lastSleepPhase.isPresent() && lastSleepPhase.get().getHour() > 6 ? Optional.empty() : Optional.of(getCommonAlert(lastSleepPhase.get()));
+        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && lastSleepPhase.isPresent() && lastSleepPhase.get().getHour() > valueService.getHour() ? Optional.empty() : Optional.of(getCommonAlert(lastSleepPhase.get()));
     }
 
     public CommonAlert getCommonAlert(LocalDateTime lastSleepPhase) {

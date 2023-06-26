@@ -24,6 +24,8 @@ public class AnalyzeService {
     VitalSignsAnalyzerService vitalSignsAnalyzerService;
     @Autowired
     MovementAnalyzerService movementAnalyzerService;
+    @Autowired
+    ValueService valueService;
 
     public List<Workbook> analyzeSignals(List<Signal> signals, String username) {
         List<Workbook> workbookList = new ArrayList<>();
@@ -43,9 +45,9 @@ public class AnalyzeService {
 
     private Optional<Workbook> checkSignal(Signal signal) {
         List<CommonAlert> commonAlerts = new ArrayList<>();
-        commonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal));
-        commonAlerts.addAll(vitalSignsAnalyzerService.isAllRulesValid(signal));
-        commonAlerts.addAll(movementAnalyzerService.isAllRulesValid(signal));
+        commonAlerts.addAll(sleepAnalyzerService.isAllRulesValid(signal, valueService));
+        commonAlerts.addAll(vitalSignsAnalyzerService.isAllRulesValid(signal, valueService));
+        commonAlerts.addAll(movementAnalyzerService.isAllRulesValid(signal, valueService));
 
         Workbook workbook = Workbook.builder()
                 .id(signal.getId())

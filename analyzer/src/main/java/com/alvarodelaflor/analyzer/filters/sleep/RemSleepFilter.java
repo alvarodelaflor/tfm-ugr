@@ -1,20 +1,23 @@
 package com.alvarodelaflor.analyzer.filters.sleep;
 
 import com.alvarodelaflor.analyzer.filters.Filter;
+import com.alvarodelaflor.analyzer.services.ValueService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.sleep.RemAlert;
 import com.alvarodelaflor.domain.model.signals.SamsungWearSignal;
 import com.alvarodelaflor.domain.model.signals.Signal;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.util.Optional;
 
+@Component
 public class RemSleepFilter implements Filter {
 
     @Override
-    public Optional<CommonAlert> isRuleValid(Signal signal) {
+    public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Long remTime = calculateRemTime(signal);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime > 30 ? Optional.empty() : Optional.of(getCommonAlert(remTime));
+        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime >= valueService.getRemTime() ? Optional.empty() : Optional.of(getCommonAlert(remTime));
     }
 
     public CommonAlert getCommonAlert(Long remTime) {
