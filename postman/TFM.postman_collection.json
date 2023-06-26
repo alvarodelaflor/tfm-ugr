@@ -208,7 +208,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/logs/9b301cc2337d6386459k3b?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00&deviceId=9b301cc2337d6386459k3b",
+									"raw": "http://localhost:8080/tuya/devices/logs/9b301cc2337d6386459k3b?startTime=26/06/2023 10:00&endTime=26/06/2023 11:30&deviceId=9b301cc2337d6386459k3b",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -223,11 +223,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "18/06/2023 17:00"
+											"value": "26/06/2023 10:00"
 										},
 										{
 											"key": "endTime",
-											"value": "18/06/2023 18:00"
+											"value": "26/06/2023 11:30"
 										},
 										{
 											"key": "deviceId",
@@ -289,7 +289,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/pirSignal?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00",
+									"raw": "http://localhost:8080/tuya/devices/pirSignal?startTime=26/06/2023 10:00&endTime=26/06/2023 11:30",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -303,11 +303,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "18/06/2023 17:00"
+											"value": "26/06/2023 10:00"
 										},
 										{
 											"key": "endTime",
-											"value": "18/06/2023 18:00"
+											"value": "26/06/2023 11:30"
 										},
 										{
 											"key": "deviceId",
@@ -330,7 +330,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/devices/signal?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00&debug=samsung&fakeSamsungValue=allb,sleep&username=ugr",
+									"raw": "http://localhost:8080/devices/signal?startTime=26/06/2023 10:00&endTime=26/06/2023 11:00&debug=samsung&fakeSamsungValue=allb,sleep&username=ugr",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -343,11 +343,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "18/06/2023 17:00"
+											"value": "26/06/2023 10:00"
 										},
 										{
 											"key": "endTime",
-											"value": "18/06/2023 18:00"
+											"value": "26/06/2023 11:00"
 										},
 										{
 											"key": "debug",
