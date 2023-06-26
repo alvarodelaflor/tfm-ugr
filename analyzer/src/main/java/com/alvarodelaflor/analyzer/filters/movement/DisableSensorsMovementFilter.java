@@ -18,13 +18,14 @@ public class DisableSensorsMovementFilter implements Filter {
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Map<String, List<LocalDateTime>> disableSensorsOccurrences = getDisableSensorsOccurrences(signal);
-        return disableSensorsOccurrences.size() < valueService.getDisableSensorsOccurrences() ? Optional.empty() : Optional.of(getCommonAlert(disableSensorsOccurrences));
+        Integer numberOfTimes = getNumberOfOccurrences(disableSensorsOccurrences);
+        return numberOfTimes < valueService.getDisableSensorsOccurrences() ? Optional.empty() : Optional.of(getCommonAlert(disableSensorsOccurrences, numberOfTimes));
     }
 
-    public CommonAlert getCommonAlert(Map<String, List<LocalDateTime>> disableSensorsOccurrences) {
+    public CommonAlert getCommonAlert(Map<String, List<LocalDateTime>> disableSensorsOccurrences, Integer numberOfTimes) {
         return DisableSensorsMovementAlert.builder()
                 .dateTimeList(disableSensorsOccurrences)
-                .numberOfTimes(getNumberOfOccurrences(disableSensorsOccurrences))
+                .numberOfTimes(numberOfTimes)
                 .build();
     }
 
