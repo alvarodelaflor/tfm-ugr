@@ -23,8 +23,6 @@ public class HighBloodPressureAlert extends CommonAlert implements Serializable 
     @Builder.Default
     Double weight = 2.9;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.HIGH_BLOOD_PRESSURE_VITAL_SIGN_FILTER;
-    @Builder.Default
     String link = "https://www.sciencedirect.com/science/article/abs/pii/S1853002810700707";
     @Builder.Default
     String summary = "Los pacientes con hipertensión arterial muestran más deterioro cognitivo que los controles normales en diferentes estudios";

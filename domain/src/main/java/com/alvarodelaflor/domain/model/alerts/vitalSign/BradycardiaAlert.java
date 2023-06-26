@@ -21,8 +21,6 @@ public class BradycardiaAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 1.6;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.BRADYCARDIA_VITAL_SIGN_FILTER;
-    @Builder.Default
     String link = "https://www.sciencedirect.com/science/article/pii/S0213485313000558";
     @Builder.Default
     String summary = "La bradicardia (< 60 ppm) es estadísticamente más frecuente en los pacientes con DFT (demencia frontotemporal)";

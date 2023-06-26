@@ -23,8 +23,6 @@ public class LowBloodPressureAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 2.9;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.LOW_BLOOD_PRESSURE_VITAL_SIGN_FILTER;
-    @Builder.Default
     String link = "https://www.nhlbi.nih.gov/es/salud/presion-arterial-baja";
     @Builder.Default
     String summary = "Hipotensión. La prensión sanguínea es más baja de lo normal, podría ser una bajada de tensión repentina grave";

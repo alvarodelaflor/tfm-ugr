@@ -25,8 +25,6 @@ public class AwakeningsAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 1.1;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.AWAKENINGS_SLEEP_FILTER;
-    @Builder.Default
     String link = "https://scielo.isciii.es/scielo.php?pid=S1137-66272007000200014&script=sci_arttext&tlng=en";
     @Builder.Default
     String summary = "En la enfermedad de Alzheimer (EA), el sueño se caracteriza por un aumento de los despertares, tanto en duración como en frecuencia";

@@ -25,8 +25,6 @@ public class WakeUpEarlyAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 0.9;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.WAKE_UP_EARLY_SLEEP_FILTER;
-    @Builder.Default
     String link = "https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272007000200011";
     @Builder.Default
     String summary = "Trastorno del ritmo circadiano. EL sujeto se despierta espontáneamente a primeras horas de la madrugada";

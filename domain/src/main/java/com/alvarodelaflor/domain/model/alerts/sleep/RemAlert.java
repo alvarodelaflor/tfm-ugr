@@ -22,8 +22,6 @@ public class RemAlert extends CommonAlert implements Serializable {
     @Builder.Default
     Double weight = 2.1;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.REM_SLEEP_FILTER;
-    @Builder.Default
     String link = "https://neurologia.com/noticia/6398/menor-sueno-rem-se-traduciria-en-un-riesgo-mas-alto-de-demencia";
     @Builder.Default
     String summary = "Menor sueño REM se traduciría en un riesgo más alto de demencia";

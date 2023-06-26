@@ -28,8 +28,6 @@ public class DisableSensorsMovementAlert extends CommonAlert implements Serializ
     @Builder.Default
     Double weight = 1.4;
     @Builder.Default
-    CommonAlertName name = CommonAlertName.DISABLE_SENSORS_MOVEMENT_FILTER;
-    @Builder.Default
     String link = "https://repositori.uji.es/xmlui/handle/10234/167159";
     @Builder.Default
     String summary = "Las personas que perciben su deterioro cognitivo pone en marcha mecanismos de defensa para ocultar sus fallos ante los demás";
