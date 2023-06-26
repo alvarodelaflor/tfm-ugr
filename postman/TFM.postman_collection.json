@@ -127,7 +127,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/tuya/devices/logs?startTime=18/06/2023 17:00&endTime=18/06/2023 18:00",
+									"raw": "http://localhost:8080/tuya/devices/logs?startTime=26/06/2023 10:00&endTime=26/06/2023 11:30",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -141,11 +141,11 @@
 									"query": [
 										{
 											"key": "startTime",
-											"value": "18/06/2023 17:00"
+											"value": "26/06/2023 10:00"
 										},
 										{
 											"key": "endTime",
-											"value": "18/06/2023 18:00"
+											"value": "26/06/2023 11:30"
 										},
 										{
 											"key": "deviceId",
@@ -465,19 +465,27 @@
 						{
 							"name": "GET PDF by username",
 							"request": {
-								"method": "GET",
+								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"id\": \"1687773600-1687777200\",\r\n        \"commonAlerts\": [\r\n            {\r\n                \"name\": \"REM_SLEEP_FILTER\",\r\n                \"weight\": 2.1,\r\n                \"link\": \"https://neurologia.com/noticia/6398/menor-sueno-rem-se-traduciria-en-un-riesgo-mas-alto-de-demencia\",\r\n                \"summary\": \"Menor sueño REM se traduciría en un riesgo más alto de demencia\",\r\n                \"descriptionName\": \"Poca cantidad de sueño REM\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"Pare el usuario del sistema, se han contabilizado tan solo 5 minutos de sueño REM.\",\r\n                \"duration\": 5\r\n            },\r\n            {\r\n                \"name\": \"AWAKENINGS_SLEEP_FILTER\",\r\n                \"weight\": 1.1,\r\n                \"link\": \"https://scielo.isciii.es/scielo.php?pid=S1137-66272007000200014&script=sci_arttext&tlng=en\",\r\n                \"summary\": \"En la enfermedad de Alzheimer (EA), el sueño se caracteriza por un aumento de los despertares, tanto en duración como en frecuencia\",\r\n                \"descriptionName\": \"Despertares continuos\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"El usuario ha estado despierto (mientras intentaba quedarse dormido), durante un total de 179 minutos distribuidos a lo largo de un total de 3 interrupciones, por lo que la media de tiempo de interrupción por cada despertar ha sido de 59.67 minutos. A continuación se muestran los períodos de tiempo en los que el usuario ha estado despierto intentando volver a dormir: [interrupción con fecha de inicio: 26/06/2023 23:14:00 y fecha de fin 27/06/2023 01:58:00, interrupción con fecha de inicio: 26/06/2023 12:30:00 y fecha de fin 26/06/2023 12:42:00, interrupción con fecha de inicio: 26/06/2023 15:12:00 y fecha de fin 26/06/2023 15:15:00].\",\r\n                \"numberOfAwakeningInterruptions\": 3,\r\n                \"interruptionPeriods\": [\r\n                    {\r\n                        \"start\": \"2023-06-26T23:14:00\",\r\n                        \"end\": \"2023-06-27T01:58:00\"\r\n                    },\r\n                    {\r\n                        \"start\": \"2023-06-26T12:30:00\",\r\n                        \"end\": \"2023-06-26T12:42:00\"\r\n                    },\r\n                    {\r\n                        \"start\": \"2023-06-26T15:12:00\",\r\n                        \"end\": \"2023-06-26T15:15:00\"\r\n                    }\r\n                ],\r\n                \"duration\": 179,\r\n                \"awakeningTimeAverage\": 59.67\r\n            },\r\n            {\r\n                \"name\": \"DAYTIME_NAP_SLEEP_FILTER\",\r\n                \"weight\": 1.6,\r\n                \"link\": \"https://scielo.isciii.es/scielo.php?pid=S1137-66272007000200014&script=sci_arttext&tlng=en\",\r\n                \"summary\": \"En la enfermedad de Alzheimer (EA), el sueño se caracteriza por un aumento de las siestas diurnas\",\r\n                \"descriptionName\": \"Siestas diurnas\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"El usuario ha durmiendo, durante el día, un total de 15 minutos. Por cada sueño que ha realizado durante el día, se muestran las etapas que a atravesado para cada uno de ellos: {AWAKE=[interrupción con fecha de inicio: 26/06/2023 12:30:00 y fecha de fin 26/06/2023 12:42:00, interrupción con fecha de inicio: 26/06/2023 15:12:00 y fecha de fin 26/06/2023 15:15:00]}.\",\r\n                \"duration\": 15,\r\n                \"daytimeSleepStages\": {\r\n                    \"AWAKE\": [\r\n                        {\r\n                            \"start\": \"2023-06-26T12:30:00\",\r\n                            \"end\": \"2023-06-26T12:42:00\"\r\n                        },\r\n                        {\r\n                            \"start\": \"2023-06-26T15:12:00\",\r\n                            \"end\": \"2023-06-26T15:15:00\"\r\n                        }\r\n                    ]\r\n                }\r\n            },\r\n            {\r\n                \"name\": \"WAKE_UP_EARLY_SLEEP_FILTER\",\r\n                \"weight\": 0.9,\r\n                \"link\": \"https://scielo.isciii.es/scielo.php?script=sci_arttext&pid=S1137-66272007000200011\",\r\n                \"summary\": \"Trastorno del ritmo circadiano. EL sujeto se despierta espontáneamente a primeras horas de la madrugada\",\r\n                \"descriptionName\": \"Despertar demasiado temprano\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"Particularmente este usuario se ha despertado el 27/06/2023 a las 05:23:00.\",\r\n                \"lastSleepPhase\": \"2023-06-27T05:23:00\"\r\n            },\r\n            {\r\n                \"name\": \"BRADYCARDIA_VITAL_SIGN_FILTER\",\r\n                \"weight\": 1.6,\r\n                \"link\": \"https://www.sciencedirect.com/science/article/pii/S0213485313000558\",\r\n                \"summary\": \"La bradicardia (< 60 ppm) es estadísticamente más frecuente en los pacientes con DFT (demencia frontotemporal)\",\r\n                \"descriptionName\": \"Bradicardia\",\r\n                \"alertType\": [\r\n                    \"INFORM\",\r\n                    \"ACTION\"\r\n                ],\r\n                \"customText\": \"Para este usuario en concreto, ha tenido de media unas 52,82 pulsaciones por minuto.\",\r\n                \"avgPulse\": 52.82\r\n            },\r\n            {\r\n                \"name\": \"HIGH_BLOOD_PRESSURE_VITAL_SIGN_FILTER\",\r\n                \"weight\": 2.9,\r\n                \"link\": \"https://www.sciencedirect.com/science/article/abs/pii/S1853002810700707\",\r\n                \"summary\": \"Los pacientes con hipertensión arterial muestran más deterioro cognitivo que los controles normales en diferentes estudios\",\r\n                \"descriptionName\": \"Hipertensión\",\r\n                \"alertType\": [\r\n                    \"INFORM\",\r\n                    \"ACTION\"\r\n                ],\r\n                \"customText\": \"El usuario estudiado tiene una una presión de 149.34 mmHG para la sistólica y de 91.01 mmHg para la diástolica.\",\r\n                \"bloodPressure\": {\r\n                    \"systolicPressure\": 149.34,\r\n                    \"diastolicPressure\": 91.01\r\n                }\r\n            },\r\n            {\r\n                \"name\": \"REPEAT_MOVEMENT_FILTER\",\r\n                \"weight\": 2.1,\r\n                \"link\": \"https://www.alz.org/alzheimer-demencia/las-10-senales#:~:text=Desorientaci%C3%B3n%20de%20tiempo%20o%20lugar,est%C3%A1n%20y%20c%C3%B3mo%20llegaron%20all%C3%AD.\",\r\n                \"summary\": \"Es posible que a las personas con deterioros cognitivos se les olvide a veces dónde están y cómo llegaron allí\",\r\n                \"descriptionName\": \"Movimientos repetidos\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"En este caso, el usuario ha realizado un número total de 5. A continuación se muestra un listado, en el que por cada uno de los sensores se detalla la hora a la que se considera que el movimiento es repetido: {9b301cc2337d6386459k3b=[26/06/2023 10:39:34, 26/06/2023 10:40:10, 26/06/2023 10:40:47, 26/06/2023 10:41:23, 26/06/2023 10:41:58]}.\",\r\n                \"repeatedMovement\": {\r\n                    \"9b301cc2337d6386459k3b\": [\r\n                        \"2023-06-26T10:39:34.827\",\r\n                        \"2023-06-26T10:40:10.155\",\r\n                        \"2023-06-26T10:40:47.752\",\r\n                        \"2023-06-26T10:41:23.186\",\r\n                        \"2023-06-26T10:41:58.372\"\r\n                    ]\r\n                },\r\n                \"repeatedMovementNumber\": 5\r\n            },\r\n            {\r\n                \"name\": \"DISABLE_SENSORS_MOVEMENT_FILTER\",\r\n                \"weight\": 1.4,\r\n                \"link\": \"https://repositori.uji.es/xmlui/handle/10234/167159\",\r\n                \"summary\": \"Las personas que perciben su deterioro cognitivo pone en marcha mecanismos de defensa para ocultar sus fallos ante los demás\",\r\n                \"descriptionName\": \"Desactivación de sensores\",\r\n                \"alertType\": [\r\n                    \"INFORM\"\r\n                ],\r\n                \"customText\": \"En concreto, este usuario se ha despertado un total de 3 veces, siendo la hora exacta de esos despertares las siguientes: [26/06/2023 10:45:05, 26/06/2023 10:43:04, 26/06/2023 10:38:53].\",\r\n                \"dateTimeList\": {\r\n                    \"9b301cc2337d6386459k3b\": [\r\n                        \"2023-06-26T10:45:05.217\",\r\n                        \"2023-06-26T10:43:04.168\",\r\n                        \"2023-06-26T10:38:53.217\"\r\n                    ]\r\n                },\r\n                \"numberOfTimes\": 3\r\n            }\r\n        ]\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "http://localhost:8083/execution/pdf/ugr",
+									"raw": "http://localhost:8083/pdf/exporter",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8083",
 									"path": [
-										"execution",
 										"pdf",
-										"ugr"
+										"exporter"
 									]
 								}
 							},

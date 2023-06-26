@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 

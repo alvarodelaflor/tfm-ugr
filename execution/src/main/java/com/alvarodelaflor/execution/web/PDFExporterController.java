@@ -5,15 +5,14 @@ import com.alvarodelaflor.execution.services.PDFGeneratorService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/pdf")
@@ -22,10 +21,9 @@ public class PDFExporterController {
     @Autowired
     private PDFGeneratorService pdfGeneratorService;
 
-    @GetMapping("/exporter/{username}")
+    @PostMapping("/exporter")
     public void generatePdf(
-            @PathVariable(value = "username") String username,
-            Workbook workbook,
+            @RequestBody List<Workbook> workbooks,
             HttpServletResponse response
     ) throws DocumentException, IOException {
         response.setContentType("application/pdf");
@@ -36,6 +34,8 @@ public class PDFExporterController {
         String headerValue = "attachment: filename=pdf_" + currentDateTime + ".pdf";
         response.setHeader(headerKey, headerValue);
 
-        this.pdfGeneratorService.export(response, workbook);
+        for (Workbook workbook : workbooks) {
+            this.pdfGeneratorService.export(response, workbook);
+        }
     }
 }
