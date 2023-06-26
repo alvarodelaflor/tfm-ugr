@@ -6,7 +6,6 @@ import lombok.Getter;
 
 import java.util.List;
 
-
 @Getter
 public class DeviceResults extends CommonContainer {
     public DevicesContainer result;

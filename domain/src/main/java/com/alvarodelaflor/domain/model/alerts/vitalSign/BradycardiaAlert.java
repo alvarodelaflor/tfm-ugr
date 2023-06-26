@@ -2,11 +2,14 @@ package com.alvarodelaflor.domain.model.alerts.vitalSign;
 
 import com.alvarodelaflor.domain.model.alerts.AlertType;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
-import lombok.*;
 import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

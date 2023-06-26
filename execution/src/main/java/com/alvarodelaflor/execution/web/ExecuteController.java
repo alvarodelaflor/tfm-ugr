@@ -1,8 +1,6 @@
 package com.alvarodelaflor.execution.web;
 
-import com.alvarodelaflor.domain.model.Workbook;
 import com.alvarodelaflor.execution.services.ExecutionService;
-import com.alvarodelaflor.execution.services.PDFGeneratorService;
 import com.lowagie.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

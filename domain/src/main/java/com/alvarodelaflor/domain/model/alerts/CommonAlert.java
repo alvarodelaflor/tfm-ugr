@@ -11,7 +11,9 @@ import com.alvarodelaflor.domain.model.alerts.vitalSign.HighBloodPressureAlert;
 import com.alvarodelaflor.domain.model.alerts.vitalSign.LowBloodPressureAlert;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import lombok.*;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;

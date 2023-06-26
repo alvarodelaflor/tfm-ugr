@@ -3,13 +3,13 @@ package com.alvarodelaflor.analyzer.filters.movement;
 import com.alvarodelaflor.analyzer.filters.Filter;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.alerts.movement.DisableSensorsMovementAlert;
-import com.alvarodelaflor.domain.model.alerts.movement.RepeatedMovementAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.domain.model.signals.TuyaPirSignal;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DisableSensorsMovementFilter implements Filter {
