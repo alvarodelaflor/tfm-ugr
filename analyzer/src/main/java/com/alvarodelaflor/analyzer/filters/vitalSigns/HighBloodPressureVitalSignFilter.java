@@ -13,8 +13,14 @@ public class HighBloodPressureVitalSignFilter implements Filter {
 
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
-        SamsungWearSignal.BloodPresure bloodPressure = signal.getSamsungWearSignals().getBloodPresure();
-        return bloodPressure.getDiastolicPressure() < valueService.getHDiastolicPressure() & bloodPressure.getSystolicPressure() < valueService.getHDiastolicPressure() ? Optional.empty() : Optional.of(getCommonAlert(bloodPressure));
+        Optional<CommonAlert> res;
+        if (signal.getSamsungWearSignals() != null) {
+            SamsungWearSignal.BloodPresure bloodPressure = signal.getSamsungWearSignals().getBloodPresure();
+            res =  bloodPressure.getDiastolicPressure() < valueService.getHDiastolicPressure() & bloodPressure.getSystolicPressure() < valueService.getHDiastolicPressure() ? Optional.empty() : Optional.of(getCommonAlert(bloodPressure));
+        } else {
+            res = Optional.empty();
+        }
+        return res;
     }
 
     public CommonAlert getCommonAlert(SamsungWearSignal.BloodPresure bloodPressure) {

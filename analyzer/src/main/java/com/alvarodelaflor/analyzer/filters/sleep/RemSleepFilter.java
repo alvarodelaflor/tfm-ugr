@@ -16,8 +16,14 @@ public class RemSleepFilter implements Filter {
 
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
-        Long remTime = calculateRemTime(signal);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime >= valueService.getRemTime() ? Optional.empty() : Optional.of(getCommonAlert(remTime));
+        Optional<CommonAlert> res;
+        if (signal.getSamsungWearSignals() != null) {
+            Long remTime = calculateRemTime(signal);
+            res = signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && remTime >= valueService.getRemTime() ? Optional.empty() : Optional.of(getCommonAlert(remTime));
+        } else {
+            res = Optional.empty();
+        }
+        return res;
     }
 
     public CommonAlert getCommonAlert(Long remTime) {

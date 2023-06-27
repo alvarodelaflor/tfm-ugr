@@ -14,8 +14,14 @@ public class BradycardiaVitalSignFilter implements Filter {
 
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
-        Double avgPulse = signal.getSamsungWearSignals().getAvgPulse();
-        return avgPulse > valueService.getAvgPulse() ? Optional.empty() : Optional.of(getCommonAlert(avgPulse));
+        Optional<CommonAlert> res;
+        if (signal.getSamsungWearSignals() != null) {
+            Double avgPulse = signal.getSamsungWearSignals().getAvgPulse();
+            return avgPulse > valueService.getAvgPulse() ? Optional.empty() : Optional.of(getCommonAlert(avgPulse));
+        } else {
+            res = Optional.empty();
+        }
+        return res;
     }
 
     public CommonAlert getCommonAlert(Double avgPulse) {

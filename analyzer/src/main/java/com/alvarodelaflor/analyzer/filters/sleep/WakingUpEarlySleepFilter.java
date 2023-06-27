@@ -14,8 +14,14 @@ public class WakingUpEarlySleepFilter implements Filter {
 
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
-        Optional<LocalDateTime> lastSleepPhase = getLastHourRecord(signal);
-        return signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && lastSleepPhase.isPresent() && lastSleepPhase.get().getHour() > valueService.getHour() ? Optional.empty() : Optional.of(getCommonAlert(lastSleepPhase.get()));
+        Optional<CommonAlert> res;
+        if (signal.getSamsungWearSignals() != null) {
+            Optional<LocalDateTime> lastSleepPhase = getLastHourRecord(signal);
+            res = signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && lastSleepPhase.isPresent() && lastSleepPhase.get().getHour() > valueService.getHour() ? Optional.empty() : Optional.of(getCommonAlert(lastSleepPhase.get()));
+        } else {
+            res = Optional.empty();
+        }
+        return res;
     }
 
     public CommonAlert getCommonAlert(LocalDateTime lastSleepPhase) {
