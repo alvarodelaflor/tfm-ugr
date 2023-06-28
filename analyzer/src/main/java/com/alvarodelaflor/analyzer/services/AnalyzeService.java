@@ -6,6 +6,8 @@ import com.alvarodelaflor.analyzer.services.filters.VitalSignsAnalyzerService;
 import com.alvarodelaflor.domain.model.alerts.CommonAlert;
 import com.alvarodelaflor.domain.model.signals.Signal;
 import com.alvarodelaflor.domain.model.Workbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,16 +29,18 @@ public class AnalyzeService {
     @Autowired
     ValueService valueService;
 
+    private static final Logger logger = LoggerFactory.getLogger(AnalyzeService.class);
+
     public List<Workbook> analyzeSignals(List<Signal> signals, String username) {
         List<Workbook> workbookList = new ArrayList<>();
         signals.stream().forEach(signal -> {
             Optional<Workbook> workbook = checkSignal(signal);
             if (workbook.isPresent()) {
-                redisService.saveWorkbook(workbook.get(), username);
                 workbookList.add(workbook.get());
+                redisService.saveWorkbook(workbook.get(), username);
                 redisService.deleteSignal(signal.getId(), username);
             } else {
-                // TODO Error msg
+                logger.info("There are no signs that require attention or are candidates for consideration in the report");
             }
         });
 

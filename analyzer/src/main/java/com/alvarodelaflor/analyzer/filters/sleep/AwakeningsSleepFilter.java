@@ -17,7 +17,7 @@ public class AwakeningsSleepFilter implements Filter {
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Optional<CommonAlert> res;
-        if (signal.getSamsungWearSignals() != null) {
+        if (signal.getSamsungWearSignals() != null && signal.getSamsungWearSignals().getSleepSession() != null) {
             Long awakeningsTime = calculateAwakeTime(signal);
             Long numberOfAwakeningInterruptions = getNumberOfAwakeningInterruptions(signal);
             res = signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && (awakeningsTime > valueService.getAwakeningsTime() || numberOfAwakeningInterruptions > valueService.getNumberOfAwakeningInterruptions()) ? Optional.of(getCommonAlert(awakeningsTime, numberOfAwakeningInterruptions, signal)) : Optional.empty();

@@ -18,7 +18,7 @@ public class DayTimeNapsSleepFilter implements Filter {
     @Override
     public Optional<CommonAlert> isRuleValid(Signal signal, ValueService valueService) {
         Optional<CommonAlert> res;
-        if (signal.getSamsungWearSignals() != null) {
+        if (signal.getSamsungWearSignals() != null && signal.getSamsungWearSignals().getSleepSession() != null) {
             Map<SamsungWearSignal.SleepStage, List<SamsungWearSignal.SleepInterruption>> dayTimeNap = calculateDaytimeSleepSession(signal);
             Long duration = calculateTotalDuration(dayTimeNap);
             res = signal.getSamsungWearSignals().getSleepSession().getFullDayRecord() && duration < valueService.getDuration() ? Optional.empty() : Optional.of(getCommonAlert(dayTimeNap, duration));
